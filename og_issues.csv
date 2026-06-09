@@ -1,0 +1,4251 @@
+repo,title,body,labels,url
+facebook/react,Implement memory profiling system with automatic leak detection and optimization suggestions,"## Problem Statement
+React applications lack built-in memory leak detection. Long-running applications experience gradual memory growth without visibility into cause. Current DevTools memory profiling requires external analysis. No automated suggestions for memory optimization patterns.
+
+**Business Impact:** Reduces memory usage by 35-50%, prevents OutOfMemory errors in production, improves application stability, reduces infrastructure costs.
+
+## Root Cause Analysis
+Memory management is developer responsibility. DevTools provide snapshots but not trend analysis. No automated pattern recognition for common memory leak causes.
+
+## Solution Overview
+Implement memory profiling and leak detection:
+- Build automated memory profiling system
+- Detect memory growth patterns over time
+- Identify component lifecycle memory leaks
+- Analyze detached DOM elements and event listeners
+- Suggest optimization patterns automatically
+- Create Real-Time memory monitoring dashboard
+
+**Implementation Steps:**
+1. Extend React DevTools with memory profiling
+2. Implement trend analysis algorithm
+3. Create pattern recognition for common leaks
+4. Build optimization suggestion engine
+5. Add production monitoring integration
+
+## Type of Change
+- Enhancement (performance)
+- Developer tooling
+- Memory optimization
+
+## Testing Done
+- Test memory profiling on 50+ React applications
+- Simulate various memory leak scenarios
+- Measure profiling overhead (< 5% impact)
+- Test with applications spanning 100MB+ memory usage
+- Verify accuracy of leak detection (95%+ accuracy)
+- Profile with different memory configurations
+- Long-running stability tests (24+ hours)
+
+## Related Issues & Standards
+- V8 Memory Profiler integration
+- Chrome DevTools Memory API standards
+
+## Suggested Labels
+- enhancement, performance, memory-profiling, developer-tools, GSSoC26",,https://github.com/facebook/react/issues/36722
+facebook/react,Add comprehensive accessibility audit system with automated WCAG 2.1 AA compliance checking,"## Problem Statement
+React components lack built-in accessibility verification. WCAG 2.1 AA compliance requires manual auditing. No automated detection of missing ARIA attributes, semantic HTML violations, or keyboard navigation issues. Teams waste 20-30% of development time on manual accessibility testing.
+
+**Business Impact:** Reduces accessibility testing time by 70%, ensures regulatory compliance (WCAG, AODA, ADA), improves user inclusivity, reduces legal liability.
+
+## Root Cause Analysis
+Accessibility is treated as separate from component development. No integrated checking during development. Manual auditing is error-prone and time-consuming.
+
+## Solution Overview
+Create integrated accessibility audit system:
+- Build eslint plugin for accessibility rule enforcement
+- Implement WCAG 2.1 AA compliance checker
+- Auto-detect missing ARIA attributes in components
+- Verify semantic HTML structure
+- Create React DevTools extension for audit visualization
+- Generate accessibility reports
+
+**Implementation Steps:**
+1. Create eslint-plugin-react-a11y with comprehensive rules
+2. Implement AST analysis for accessibility violations
+3. Build WCAG 2.1 AA compliance checker
+4. Add React DevTools audit panel
+5. Create CI/CD integration and reporting
+
+## Type of Change
+- Enhancement (accessibility)
+- Quality assurance improvement
+- Developer tooling
+
+## Testing Done
+- Test on 100+ React components with various patterns
+- Verify WCAG 2.1 AA compliance detection accuracy
+- Performance testing (< 500ms per component)
+- Test with real screen readers (NVDA, JAWS, VoiceOver)
+- Keyboard navigation comprehensive testing
+- Integration testing with popular component libraries
+
+## Related Issues & Standards
+- WCAG 2.1 AA compliance requirements
+- Accessibility standards: Section 508, AODA
+
+## Suggested Labels
+- enhancement, accessibility, wcag, quality-assurance, GSSoC26",,https://github.com/facebook/react/issues/36721
+facebook/react,Implement concurrent rendering with automatic priority scheduling for user interactions,"## Problem Statement
+React's concurrent features lack automatic priority detection for user interactions. Applications with mixed I/O-bound and computation-heavy operations experience degraded responsiveness. No built-in mechanism prioritizes user interactions like clicks and scrolls over background updates.
+
+**Business Impact:** Improves perceived performance by 40%, increases user satisfaction, reduces janky animations in production applications.
+
+## Root Cause Analysis
+Current concurrency model requires manual useTransition/useDeferredValue usage. No automatic detection of interaction urgency. Developer coordination overhead is high.
+
+## Solution Overview
+Implement automatic interaction priority scheduling:
+- Detect user interactions at React event level
+- Auto-prioritize state updates from interaction handlers
+- Build time-slicing algorithm for background updates
+- Create heuristic priority system based on interaction type
+- Add metrics and monitoring for priority scheduling
+
+**Implementation Steps:**
+1. Enhance event handling to detect interaction source
+2. Implement priority queue for concurrent updates
+3. Build scheduling algorithm with configurable priorities
+4. Add React DevTools visualization for scheduling
+5. Document best practices and performance patterns
+
+## Type of Change
+- Enhancement (performance)
+- Concurrent features improvement
+- User experience optimization
+
+## Testing Done
+- Test 50+ real-world interaction patterns
+- Measure responsiveness improvement with synthetic benchmarks
+- Profile scheduling overhead (< 50ms per update)
+- Test with accessibility tools and keyboard navigation
+- Cross-browser stress testing
+- Monitor memory impact in long-running applications
+
+## Related Issues & Standards
+- Web Standards: User Timing API
+- Benchmarks: FID < 100ms target
+
+## Suggested Labels
+- enhancement, concurrency, performance, user-interaction, GSSoC26",,https://github.com/facebook/react/issues/36720
+facebook/react,Enhance error boundary with recovery suggestions and source map debugging,"## Problem Statement
+React error boundaries suppress errors without providing developers actionable recovery suggestions. Stack traces lack source map resolution in production builds. Error context is minimal, making debugging enterprise applications difficult. No built-in mechanism suggests fixes for common error patterns.
+
+**Business Impact:** Reduces debugging time by 60%, improves developer productivity, enables faster incident response in production environments.
+
+## Root Cause Analysis
+Error boundaries catch errors but provide minimal context. Source mapping is external concern. No pattern recognition for common error types exists.
+
+## Solution Overview
+Enhance error boundaries with intelligent debugging:
+- Auto-expand error context with component hierarchy visualization
+- Implement source map resolution for production builds
+- Build pattern recognition for common errors (null dereference, type mismatches)
+- Suggest fix strategies based on error type
+- Integrate with DevTools for enhanced debugging
+
+**Implementation Steps:**
+1. Extend ErrorBoundary with context collectors
+2. Add source map parsing and resolution logic
+3. Create error pattern database with recovery suggestions
+4. Build React DevTools extension UI for error exploration
+5. Add documentation for error handling best practices
+
+## Type of Change
+- Enhancement (developer experience)
+- Debugging improvement
+- Error handling
+
+## Testing Done
+- Test 100+ common React error scenarios
+- Verify source map resolution accuracy in production builds
+- Test performance impact on error handling (< 100ms)
+- Cross-browser compatibility testing
+- Profile memory usage with large error stacks
+- Test with real-world error patterns from production monitoring
+
+## Related Issues & Standards
+- Web Standards: Error reporting and handling
+- Benchmarks: Error recovery time < 5 minutes
+
+## Suggested Labels
+- enhancement, error-handling, debugging, developer-experience, GSSoC26",,https://github.com/facebook/react/issues/36719
+facebook/react,Implement lazy loading optimization for large component trees with automatic code splitting,"## Problem Statement
+React applications with deep component hierarchies experience significant performance degradation. When rendering component trees exceeding 1000+ nodes, initial bundle size and Time to Interactive (TTI) metrics worsen substantially. Current code-splitting mechanisms require manual optimization; automatic lazy-loading detection would improve developer experience and reduce bundle bloat.
+
+**Business Impact:** Reduces initial load time by 30-50%, improves Core Web Vitals (LCP, FID, CLS), increases user engagement and conversion rates in enterprise applications.
+
+## Root Cause Analysis
+React's static import system requires manual code-splitting implementation. No built-in mechanism detects frequently non-critical components. Bundle analysis tools are external, creating fragmentation in the optimization workflow.
+
+## Solution Overview
+Implement automatic lazy loading detection:
+- Analyze component tree at build time using AST analysis
+- Identify components with low immediate render priority
+- Auto-wrap with React.lazy() with configurable thresholds
+- Provide eslint-plugin-react rule for manual optimization hints
+- Add dev tools visualization of component loading waterfall
+
+**Implementation Steps:**
+1. Create babel-plugin-react-lazy-auto for AST analysis
+2. Implement heuristics: component depth, re-render frequency, user interaction dependency
+3. Build webpack/vite integrations for automatic splitting
+4. Add React DevTools extension for loading analysis
+5. Document performance optimization patterns
+
+## Type of Change
+- Enhancement (new feature)
+- Performance optimization
+- Developer experience improvement
+
+## Testing Done
+- Test 50+ real-world React applications with varying component depths
+- Benchmark bundle size reduction (target: 25-40% reduction)
+- Measure TTI improvement with synthetic and real user data
+- Verify no runtime errors or memory leaks with automated testing
+- Cross-browser compatibility testing (Chrome, Firefox, Safari, Edge)
+- Profile with React Profiler under production conditions
+
+## Related Issues & Standards
+- Related: React RFC on automatic code-splitting
+- Standards: Web Performance Working Group guidelines
+- Benchmarks: Core Web Vitals (LCP < 2.5s, FID < 100ms, CLS < 0.1)
+
+## Suggested Labels
+- enhancement, performance, code-splitting, developer-experience, GSSoC26",,https://github.com/facebook/react/issues/36718
+facebook/react,Bug: Submission to https://bugbounty.meta.com/report/ is not possible due to a strict-origin-when-cross-origin error.,"I attempted to report two security vulnerabilities through bugbounty.meta.com, but the submission failed due to an error when I clicked the submit button. 
+
+```
+Loading the stylesheet 'https://www.gstatic.com/.../el_main_css' violates the following Content Security Policy directive: ""style-src 'self' 'unsafe-inline' data: *.fbcdn.net 'unsafe-eval'"". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback. The action has been blocked.
+```
+
+Therefore, I have submitted the two vulnerabilities via GitHub, so I would appreciate it if you could review them.
+
+If anything in the write ups is unclear, or you'd like additional detail, a refined PoC, or help validating a fix, I'm glad to assist.",Status: Unconfirmed,https://github.com/facebook/react/issues/36717
+facebook/react,README Score: 68/100 C,"## README Score: 68/100 (Grade C)
+
+I ran [readme-score](https://github.com/agiulucom42-del/readme-score) on React's README. Breakdown:
+
+| Category | Score |
+|---|---|
+| Title & Description | 15/15 ? |
+| Badges | 0/10 ? |
+| Installation | 15/15 ? |
+| Usage & Examples | 20/20 ? |
+| API Documentation | 0/15 ? |
+| Contributing | 10/10 ? |
+| License | 10/10 ? |
+| Extras | 0/5 ? |
+
+Total: **68/100 C**
+
+Full report card: https://gist.github.com/agiulucom42-del/30d653cdcf902f0b423ea3ded29eafc9",,https://github.com/facebook/react/issues/36715
+facebook/react,[DevTools Bug]: Brat Generator Text Rendering Problem on GitHub Deploymention,"### Website or app
+
+https://bratgeneratory.com/
+
+### Repro steps
+
+Hello everyone,
+
+I'm currently experiencing a deployment issue with my [brat generator](https://bratgeneratory.com/) project hosted on GitHub Pages. The application functions perfectly in my local development environment, but after deployment, several visual and styling elements do not appear as expected.
+
+### Issue Overview
+
+After publishing the project, I noticed that the deployed version looks different from the local version. The core functionality works, but some design elements are not rendering correctly.
+
+### Problems Encountered
+
+* Custom fonts fail to load consistently after deployment.
+* Background colors and text positioning differ from the local build.
+* Certain text effects generated by the brat generator appear distorted on mobile devices.
+* CSS styling behaves differently across Chrome, Firefox, and Safari.
+* Layout consistency issues occur on both desktop and mobile browsers.
+
+### Environment
+
+* Platform: GitHub Pages
+* Technology Stack: HTML, CSS, JavaScript
+* Browsers Tested: Chrome, Firefox, Safari
+* Devices Tested: Desktop and Mobile
+
+### Steps to Reproduce
+
+1. Open the deployed brat generator application.
+2. Enter any text into the generator.
+3. Generate a design.
+4. Compare the output with the local development version.
+
+### Expected Behavior
+
+The deployed version should match the local version exactly, including fonts, colors, text alignment, effects, and overall layout.
+
+### Potential Causes
+
+* Incorrect asset or font file paths after deployment.
+* Font resources not being loaded properly by GitHub Pages.
+* Browser caching issues causing outdated styles to be displayed.
+* CSS compatibility or rendering differences across browsers.
+* Mobile-specific styling conflicts affecting generated text effects.
+
+If anyone has faced similar issues with GitHub Pages deployments, typography-based generators, or frontend styling inconsistencies, I would greatly appreciate any suggestions, troubleshooting tips, or recommended solutions.
+
+Thank you for your time and assistance.
+
+
+### How often does this bug happen?
+
+Every time
+
+### DevTools package (automated)
+
+_No response_
+
+### DevTools version (automated)
+
+_No response_
+
+### Error message (automated)
+
+_No response_
+
+### Error call stack (automated)
+
+```text
+
+```
+
+### Error component stack (automated)
+
+```text
+
+```
+
+### GitHub query string (automated)
+
+```text
+
+```",Type: Bug Status: Unconfirmed Component: Developer Tools,https://github.com/facebook/react/issues/36714
+facebook/react,Bug: I need my Facebook to set you down and to be starting to send Facebook message to other friends help me arrange everything on my Facebook to be good,"`<!--`<!--
+  Please provide a clear and concise description of what the bug is. Include
+  screenshots if needed. Please test using the latest version of the relevant
+  React packages to make sure your issue has not already been fixed.
+-->
+
+React version:
+
+## Steps To Reproduce
+
+1.
+2.
+
+<!--
+  Your bug will get fixed much faster if we can run your code and it doesn't
+  have dependencies other than React. Issues without reproduction steps or
+  code examples may be immediately closed as not actionable.
+-->
+
+Link to code example:
+
+<!--
+  Please provide a CodeSandbox (https://codesandbox.io/s/new), a link to a
+  repository on GitHub, or provide a minimal code example that reproduces the
+  problem. You may provide a screenshot of the application if you think it is
+  relevant to your bug report. Here are some tips for providing a minimal
+  example: https://stackoverflow.com/help/mcve.
+-->
+
+## The current behavior
+
+
+## The expected behavior
+",Status: Unconfirmed,https://github.com/facebook/react/issues/36689
+microsoft/vscode,Enterprise Policy language file invalid (.adml),"<!-- ⚠️⚠️ Do Not Delete This! bug_report_template ⚠️⚠️ -->
+<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->
+<!-- 🕮 Read our guide about submitting issues: https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions -->
+<!-- 🔎 Search existing issues to avoid creating duplicates. -->
+<!-- 🧪 Test using the latest Insiders build to see if your issue has already been fixed: https://code.visualstudio.com/insiders/ -->
+<!-- 💡 Instead of creating your report here, use 'Report Issue' from the 'Help' menu in VS Code to pre-fill useful information. -->
+<!-- 🔧 Launch with `code --disable-extensions` to check. -->
+Does this issue occur when all extensions are disabled?: Yes/No
+
+<!-- 🪓 If you answered No above, use 'Help: Start Extension Bisect' from Command Palette to try to identify the cause. -->
+<!-- 📣 Issues caused by an extension need to be reported directly to the extension publisher. The 'Help > Report Issue' dialog can assist with this. -->
+- VS Code Version: VSCode-win32-x64-1.123.0
+- OS Version: Not applicable
+
+## Steps to Reproduce:
+
+1. Download ZIP based installer
+2. Sign-in into Microsoft Intune and try uploading the `VSCode.admx` and `en-us\VSCode.adml` files
+3. Receive error message
+<img width=""1113"" height=""465"" alt=""Image"" src=""https://github.com/user-attachments/assets/f0ee4360-7509-45b0-a56c-862e9f74ae1e"" />
+
+## Solution per GitHub Copilot:
+
+I’m checking the ADML structure against the matching ADMX and the XML rules that Intune enforces, so I can identify the exact validation point rather than guess.
+
+I’m locating the owning ADMX references for this language file and checking for any schema mismatch or missing resource IDs, which is the cheapest way to falsify whether the issue is just “bad XML” versus a real ADMX/ADML contract break.
+
+Search complete: Inspect ADMX linkage
+
+Searched codebase for ""VSCode.admx VSCode.adml policy schema mismatches Intune validation"", no results
+
+Searched codebase for ""ADMX ADML string and presentation ID references missing or mismatched"", no results
+
+Searched for files matching `**/VSCode.admx`, 1 match
+
+Searched for files matching `**/VSCode.adml`, 14 matches
+
+Searched for regex `VSCode.admx|VSCode.adml`, no results
+
+Searched for regex `en-us|en_US|PresentationId|StringId` (`**/*.admx`), no results
+
+Searched for regex `Category|PolicyDefinition|Policy|Resource` (`**/*.admx`), 133 results
+
+Searched for regex `<StringId|<PresentationId` (`**/*.admx`), no results
+
+Searched codebase for ""en-us VSCode.adml string and presentation ID references"", no results
+
+Searched for files matching `**/VSCode.adml`, 14 matches
+
+Searched for regex `string.Application|string.Category_interactiveSessionConfigurationTitle|string.Category_extensionsConfigurationTitle|string.Category_terminalIntegratedConfigurationTitle|string.Category_telemetryConfigurationTitle|string.Category_updateConfigurationTitle` (`**/*.adml`), no results
+
+Searched for regex `BrowserChatTools|ChatAgentAllowedNetworkDomains|ChatAgentDeniedNetworkDomains|ChatAgentExtensionTools|ChatAgentMode|ChatAgentNetworkFilter|ChatApprovedAccountOrganizations|ChatEnabledPlugins|ChatExtraMarketplaces|ChatHooks|ChatMCP|ChatPluginsEnabled|ChatStrictMarketplaces|ChatToolsAutoApprove|ChatToolsEligibleForAutoApproval|Claude3PIntegration|CopilotNextEditSuggestions|CopilotReviewAgent|CopilotReviewSelection|CopilotSessionSync|DeprecatedEditModeHidden|McpEnterpriseManagedAuthIdp|McpGalleryServiceUrl|AllowedExtensions|ExtensionGalleryServiceUrl|ChatAgentSandboxAllowAutoApprove|ChatAgentSandboxAllowUnsandboxedCommands|ChatAgentSandboxAutoApproveUnsandboxedCommands|ChatAgentSandboxEnabled|ChatToolsTerminalEnableAutoApprove|EnableFeedback|TelemetryLevel|UpdateMode` (`**/*.adml`), 200 results
+
+Searched for regex `PresentationId|StringId` (`**/*.adml`), 1 result
+
+Searched for files matching `**/en-us/**/VSCode.adml`, 1 match
+
+Read [](file:///c%3A/Users/Skills/Downloads/VSCode-win32-x64-1.123.0/policies/VSCode.admx#1-1), lines 1 to 220
+
+Read [](file:///c%3A/Users/Skills/Downloads/VSCode-win32-x64-1.123.0/policies/VSCode.admx#220-220), lines 220 to 323
+
+Searched codebase for ""ADML string and presentation ID references for Intune validation"", no results
+
+Searched for regex `string\.` (`**/*.adml`), no results
+
+Searched for regex `presentation\.` (`**/*.adml`), no results
+
+Searched for regex `Category_` (`**/*.adml`), 70 results
+
+Searched for regex `Supported_` (`**/*.adml`), 196 results
+
+Searched for files matching `**/en-us/**/VSCode.adml`, 1 match
+
+Searched for files matching `**/ko-kr/**/VSCode.adml`, 1 match
+
+Searched for files matching `**/es-es/**/VSCode.adml`, 1 match
+
+I found a concrete parser-level issue: the file contains raw angle brackets inside string values, which makes the ADML not well-formed XML before Intune even gets to policy validation. I’m pulling the exact lines so the failure point is explicit.
+
+Read [](file:///c%3A/Users/Skills/Downloads/VSCode-win32-x64-1.123.0/policies/en-us/VSCode.adml#30-30), lines 30 to 60
+
+Intune would call this ADML invalid because it is not well-formed XML.
+
+The concrete break is in VSCode.adml and VSCode.adml. These string values contain raw angle brackets inside element text:
+
+```xml
+<string id=""ChatEnabledPlugins_chat_plugins_enabledPlugins_policy"">
+  Plugin enablement. Keys are plugin IDs in `<plugin>@<marketplace>` form; ...
+</string>
+
+<string id=""ChatExtraMarketplaces_chat_plugins_extraMarketplaces_policy"">
+  ... Git URIs (`<url>[#ref]`).
+</string>
+```
+
+In XML text, `<plugin>`, `<marketplace>`, and `<url>` are parsed as child elements, not literal text. That makes the document malformed unless they are escaped as `&lt;plugin&gt;`, `&lt;marketplace&gt;`, and `&lt;url&gt;`. Intune validates the ADML as XML first, so it will reject the file before it even checks whether the ADMX/ADML references line up.
+
+The fix is to escape those angle brackets in every affected ADML locale. For the English file, the two values should read roughly like this:
+
+```xml
+... IDs in `&lt;plugin&gt;@&lt;marketplace&gt;` form ...
+... Git URIs (`&lt;url&gt;[#ref]`) ...
+```
+
+I did not see a matching ADMX/ADML ID mismatch in the portion I checked; the parser error is the strong root-cause candidate here. If you want, I can patch all affected ADML files in this policy set.
+
+## Results
+
+After manually patching the `.adml` file I was able to upload it into Intune.",,https://github.com/microsoft/vscode/issues/320551
+microsoft/vscode,"Remote connection locks other windows, no2","
+Type: <b>Bug</b>
+
+Hi,
+Very nice editor.
+I use the Remote-SSH function (is it an extension? I don't know) very often and in multiple editor windows.
+
+I move my computer between work and home - so I naturally lose the connection always.
+
+Every Remote-SSH vscode window will then pop up a dialogue about reconnecting. My job then is to find in which order to press the dialogues - becuase they all lock each other and only the latest (or first?) dialogue can be pressed. All the other dialogues refuse interaction until it is the top-most.
+
+So the bug is that I have X number of ""remote session lost""-windows, but I must press them in correct order.
+
+Regards
+Kjell
+
+VS Code version: Code 1.121.0 (f6cfa2ea2403534de03f069bdf160d06451ed282, 2026-05-19T11:51:53+02:00)
+OS version: Linux x64 6.8.0-124-generic
+Modes:
+Remote OS version: Linux x64 6.8.0-124-generic
+Connection to 'ssh-remote+tvacts1' could not be established
+Remote OS version: Linux x64 6.17.0-35-generic
+Connection to 'ssh-remote+hqts1' could not be established
+
+<details>
+<summary>System Info</summary>
+
+|Item|Value|
+|---|---|
+|CPUs|AMD Ryzen 5 5625U with Radeon Graphics (12 x 2414)|
+|GPU Status|2d_canvas: enabled<br>GPU0: VENDOR= 0x1002 [Google Inc. (AMD)], DEVICE=0x15e7 [ANGLE (AMD, AMD Radeon Graphics (radeonsi renoir ACO), OpenGL ES 3.2 Mesa 25.2.8-0ubuntu0.24.04.1)], DRIVER_VENDOR=Mesa, DRIVER_VERSION=25.2.8 *ACTIVE*<br>Machine model name: <br>Machine model version: <br>direct_rendering_display_compositor: disabled_off_ok<br>gpu_compositing: enabled<br>multiple_raster_threads: enabled_on<br>opengl: enabled_on<br>rasterization: enabled<br>raw_draw: disabled_off_ok<br>skia_graphite: disabled_off<br>trees_in_viz: disabled_off<br>video_decode: enabled<br>video_encode: disabled_software<br>vulkan: disabled_off<br>webgl: enabled<br>webgl2: enabled<br>webgpu: disabled_off<br>webnn: disabled_off|
+|Load (avg)|3, 2, 1|
+|Memory (System)|30.66GB (11.20GB free)|
+|Process Argv|--crash-reporter-id 8d409cf6-c903-45aa-9621-a0e82b28374a|
+|Screen Reader|no|
+|VM|0%|
+|DESKTOP_SESSION|ubuntu|
+|XDG_CURRENT_DESKTOP|ubuntu:GNOME|
+|XDG_SESSION_DESKTOP|ubuntu|
+|XDG_SESSION_TYPE|wayland|
+
+|Item|Value|
+|---|---|
+|Remote|SSH: tvacts1|
+|OS|Linux x64 6.8.0-124-generic|
+|CPUs|12th Gen Intel(R) Core(TM) i7-12700T (20 x 800)|
+|Memory (System)|31.02GB (28.01GB free)|
+|VM|0%|
+
+Connection to 'ssh-remote+tvacts1' could not be established
+
+|Item|Value|
+|---|---|
+|Remote|SSH: ts1.prod.unibap.net|
+|OS|Linux x64 6.17.0-35-generic|
+|CPUs|12th Gen Intel(R) Core(TM) i5-1235U (12 x 726)|
+|Memory (System)|15.30GB (10.95GB free)|
+|VM|0%|
+
+Connection to 'ssh-remote+hqts1' could not be established
+</details><details><summary>Extensions (9)</summary>
+
+Extension|Author (truncated)|Version
+---|---|---
+project-manager|ale|13.1.0
+remote-ssh|ms-|0.124.0
+remote-ssh-edit|ms-|0.87.0
+remote-explorer|ms-|0.5.0
+black-formatter|ms-|2026.6.0
+debugpy|ms-|2026.6.0
+python|ms-|2026.4.0
+vscode-pylance|ms-|2026.2.1
+vscode-python-envs|ms-|1.30.0
+
+(1 theme extensions excluded)
+
+</details><details>
+<summary>A/B Experiments</summary>
+
+```
+vsliv368cf:30146710
+pythonvspyt551:31249599
+binariesv615:30325510
+nativeloc1:31344060
+dwcopilot:31170013
+dwoutputs:31242946
+copilot_t_ci:31333650
+e5gg6876:31282496
+pythonrdcb7:31342333
+6518g693:31463988
+aj953862:31281341
+6abeh943:31336334
+envsactivate1:31505457
+cloudbuttont:31379625
+3efgi100_wstrepl:31403338
+56b7f661:31457055
+ec5jj548:31422691
+cp_cls_t_966_ss:31526232
+inlinechat_v2_hd992725:31505030
+4je02754:31466945
+8hhj4413:31478653
+ge8j1254_inline_auto_hint_haiku:31490510
+38bie571_auto:31478678
+cp_cls_t_1081:31454832
+conptydll_true:31498968
+ia-use-proxy-models-svc:31452481
+e9c30283:31461165
+test_treatment2:31471001
+c9b86496:31447327
+rl_b_xe_098a3278:31529126
+idci7584:31464702
+e3e4d672:31494082
+ei9d7968:31496641
+nes-extended-on:31455476
+chat:31457767
+8hig5102:31480529
+89g7j272:31518289
+7e187181:31503455
+i2gc6536:31499202
+52612955:31516516
+ghj88844:31499326
+ec1eg703:31520046
+ddid_t:31478206
+hmra_i5g22:31518061
+7df3h592:31512476
+pro_large_t:31499376
+cp_cls_t_1082:31516087
+logging_enabled_new:31498466
+db5d2638:31499441
+jb_cp_cls_c_632:31524806
+56dj4588:31512888
+32d76977:31512328
+ha629193:31508444
+cdk-lw-on:31524445
+nes-charagree-1:31521370
+2cfga817_c:31522397
+api_cot_ctrl:31513533
+hgf2d445:31517210
+prpt_ctrl:31518467
+95db8703:31523165
+61138546:31518536
+gf14b233:31526830
+
+```
+
+</details>
+
+<!-- generated by issue reporter -->",,https://github.com/microsoft/vscode/issues/320549
+microsoft/vscode,Getting a lot of errors in console window with agent discovery,"Not sure what I did to get this,
+I was working on around 6-8 agent host sessions
+
+<img width=""1494"" height=""1685"" alt=""Image"" src=""https://github.com/user-attachments/assets/e799c59e-16cf-4eeb-aa4b-3d2375c36af0"" />",,https://github.com/microsoft/vscode/issues/320548
+microsoft/vscode,User message bubble is clipped,"<!-- ⚠️⚠️ Do Not Delete This! bug_report_template ⚠️⚠️ -->
+<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->
+<!-- 🕮 Read our guide about submitting issues: https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions -->
+<!-- 🔎 Search existing issues to avoid creating duplicates. -->
+<!-- 🧪 Test using the latest Insiders build to see if your issue has already been fixed: https://code.visualstudio.com/insiders/ -->
+<!-- 💡 Instead of creating your report here, use 'Report Issue' from the 'Help' menu in VS Code to pre-fill useful information. -->
+<!-- 🔧 Launch with `code --disable-extensions` to check. -->
+Does this issue occur when all extensions are disabled?: Yes/No
+
+<!-- 🪓 If you answered No above, use 'Help: Start Extension Bisect' from Command Palette to try to identify the cause. -->
+<!-- 📣 Issues caused by an extension need to be reported directly to the extension publisher. The 'Help > Report Issue' dialog can assist with this. -->
+
+Version: 1.123.0
+Commit: 6a44c352bd24569c417e530095901b649960f9f8
+Date: 2026-06-03T11:29:03+02:00
+Electron: 42.2.0
+ElectronBuildId: 14159160
+Chromium: 148.0.7778.97
+Node.js: 24.15.0
+V8: 14.8.178.14-electron.0
+OS: Darwin arm64 25.5.0
+
+When pasting and sending a long message (around 50 lines) in Copilot Chat, the user message bubble is sometimes clipped.
+
+Navigating back to the session list and then reopening the session restores the message bubble to the correct layout.
+
+This issue occurs rarely and is difficult to reproduce consistently.
+
+<img width=""911"" height=""232"" alt=""Image"" src=""https://github.com/user-attachments/assets/cd536a3c-8de9-43a1-9a44-2d35726c5886"" />
+
+
+
+",,https://github.com/microsoft/vscode/issues/320539
+microsoft/vscode,"BYOK dialog shows up, despite being signed in","BYOK dialog shows up in Sessions Window, despite being signed in:
+
+<img width=""2028"" height=""1204"" alt=""Image"" src=""https://github.com/user-attachments/assets/9bf90bda-9d31-4309-a557-b386a208b40e"" />
+
+I used:
+`code-insiders --transient`
+on Windows.
+This was right after signing in. But it persists after reload windows. I've seen it where it only appears when switching when Copilot CLI to Copilot CLI (Local Agent Host)",bug model-byok agents-window,https://github.com/microsoft/vscode/issues/320537
+microsoft/vscode,Unable to run,"I'm completing my tasks and I get them wrong and it says that it's unable the run java.
+ My Java labs are failing with:
+
+Status: FAILED!
+Reason: Unable to run Payroll.java
+Error: /bin/sh: javac: not found
+
+The same error is occurring in multiple Java assignments. The grader cannot compile the program because javac is not found. Can you check whether the Java compiler is available in the lab environment for my account?
+
+Version: 1.123.0
+Commit: 6a44c352bd24569c417e530095901b649960f9f8
+User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36 Edg/149.0.0.0
+Embedder: codespaces
+
+<!-- generated by web issue reporter -->",,https://github.com/microsoft/vscode/issues/320533
+microsoft/vscode,GitHub Copilot GPT-5.5 (Xhigh) frequently regenerates or duplicates output,"When using GPT-5.5 Xhigh requiring complex reasoning, I often see one of the following anomalies:
+
+* Sometimes a long response will be almost finished; then it will stall, and then the entire response (after any reasoning) will be cleared and a _new_ response generated in its place.
+* Sometimes after a long response, a second virtually (but not quite) identical response content block will be generated _after_ the first response content (but as part of the same turn).
+
+I can only guess that this is related to some process in the GPT-5.5 ""reasoning"" process, but I don't know if it's a bug on the provider's part, or if it is a bug in how GitHub Copilot responds to the events in the streaming API.
+
+```
+Version: 1.123.0 (user setup)
+Commit: 6a44c352bd24569c417e530095901b649960f9f8
+Date: 2026-06-03T11:29:03+02:00
+Electron: 42.2.0
+ElectronBuildId: 14159160
+Chromium: 148.0.7778.97
+Node.js: 24.15.0
+V8: 14.8.178.14-electron.0
+OS: Windows_NT x64 10.0.26200
+```",,https://github.com/microsoft/vscode/issues/320532
+microsoft/vscode,Skills contributed by VS Code Client do not contain descriptions,"The client customizations sent from client to agent host are missing the skill descriptions.
+See below.
+
+<img src=""https://github.com/user-attachments/assets/d35c69c3-0f4c-46d4-87d5-173a9b5110ae"" alt=""Image"" width=""524"" height=""156"">
+
+",agent-host,https://github.com/microsoft/vscode/issues/320531
+microsoft/vscode,Copilot tool list showing wrong name for tools,"
+Type: <b>Bug</b>
+
+In the latest version of VSCode, the name of the mcp server in the copilot tools list no longer shows the name and instead shows the command.
+
+This means that the below config now produces two tools called ""mcp-oauth-proxy"" in the copilot tools list. Previously they showed as ""myMCP1"" and ""myMCP2"" in the tools list.
+
+I tried adding a ""name"": ""myMCP1"" json paramater but there was no change.
+
+```
+""myMCP1"": {
+    ""type"": ""stdio""
+    ""command"": ""mcp-oauth-proxy"",
+    ""args"": [
+        ""https://mymcp1.mcp.xyz.zone/""
+    ]
+},
+""myMCP2"": {
+    ""type"": ""stdio""
+    ""command"": ""mcp-oauth-proxy"",
+    ""args"": [
+        ""https://mymcp2.mcp.xyz.zone/""
+    ]
+}
+``` 
+
+VS Code version: Code 1.123.0 (6a44c352bd24569c417e530095901b649960f9f8, 2026-06-03T11:29:03+02:00)
+OS version: Windows_NT x64 10.0.26200
+Modes:
+
+<details>
+<summary>System Info</summary>
+
+|Item|Value|
+|---|---|
+|CPUs|11th Gen Intel(R) Core(TM) i9-11950H @ 2.60GHz (16 x 2611)|
+|GPU Status|2d_canvas: enabled<br>GPU0: VENDOR= 0x8086, DEVICE=0x9a60 [Intel(R) UHD Graphics], DRIVER_VENDOR=Intel, DRIVER_VERSION=32.0.101.7084 *ACTIVE*<br>GPU1: VENDOR= 0x10de, DEVICE=0x25b8 [NVIDIA RTX A2000 Laptop GPU], DRIVER_VERSION=32.0.15.8195<br>GPU2: VENDOR= 0x1414, DEVICE=0x008c [Microsoft Basic Render Driver], DRIVER_VERSION=10.0.26100.8328<br>Machine model name: <br>Machine model version: <br>direct_rendering_display_compositor: disabled_off_ok<br>gpu_compositing: enabled<br>multiple_raster_threads: enabled_on<br>opengl: enabled_on<br>rasterization: enabled<br>raw_draw: disabled_off_ok<br>skia_graphite: disabled_off<br>trees_in_viz: disabled_off<br>video_decode: enabled<br>video_encode: enabled<br>webgl: enabled<br>webgpu: enabled<br>webnn: disabled_off|
+|Load (avg)|undefined|
+|Memory (System)|63.73GB (33.72GB free)|
+|Process Argv|--crash-reporter-id 4200918a-5d85-4893-87e9-de219697b6e5|
+|Screen Reader|no|
+|VM|0%|
+</details><details>
+<summary>A/B Experiments</summary>
+
+```
+vsliv368:30146709
+binariesv615:30325510
+nativeloc1:31344060
+dwcopilot:31170013
+dwoutputs:31242946
+copilot_t_ci:31333650
+e5gg6876:31282496
+pythonrdcb7:31342333
+6518g693:31463988
+aj953862:31281341
+6abeh943:31336334
+envsactivate1:31505457
+cloudbuttont:31379625
+3efgi100_wstrepl:31403338
+ec5jj548:31422691
+cp_cls_t_966_ss:31526232
+inlinechat_v2_hd992725:31505030
+4je02754:31466945
+8hhj4413:31478653
+ge8j1254_inline_auto_hint_haiku:31490510
+38bie571_auto:31478677
+cp_cls_t_1081:31454832
+conptydll_true:31498968
+ia-use-proxy-models-svc:31452481
+e9c30283:31461165
+test_treatment2:31471001
+c9b86496:31447327
+idci7584:31464702
+e3e4d672:31494082
+ei9d7968:31496641
+nes-extended-on:31455476
+chat:31457767
+8hig5102:31480529
+89g7j272:31518289
+7e187181:31503455
+i2gc6536:31499202
+52612955:31516516
+ghj88844:31499326
+ddid_c:31478207
+hmra_i5g22:31518061
+7df3h592:31512476
+pro_large_t:31499376
+cp_cls_t_1082:31516087
+logging_enabled_new:31498466
+db5d2638:31499441
+jb_cp_cls_c_632:31524806
+748c7209:31512887
+32d76977:31512328
+ha629193:31508444
+cdk-lw-on:31524445
+nes-charagree-0:31521369
+31fi7170_t:31522396
+api_cot_ctrl:31513533
+hgf2d445:31517210
+prpt_srch:31518468
+95db8703:31523165
+61138546:31518536
+gf14b233:31526830
+
+```
+
+</details>
+
+<!-- generated by issue reporter -->",,https://github.com/microsoft/vscode/issues/320530
+microsoft/vscode,Chat participant stops after preamble without calling MCP tool in 1.123 (works in <=1.122),"**Title:** Chat participant stops after preamble without calling MCP tool in 1.123 (works in <=1.122)
+
+Related: #319330 (tool virtualization for large MCP servers) — same underlying tool-virtualization system, different symptom.
+
+### Version
+- VS Code: 1.123 (regressed from 1.122)
+- OS: Windows
+- Model: Claude Opus 4.8, Opus 4.6
+
+### Describe the bug
+
+I invoke a chat participant with `@my-chat-participant generate ...`. The participant uses a custom MCP server tool.
+
+- **<=1.122:** After the preamble, the participant calls the custom MCP tool correctly and produces the full response.
+- **1.123:** The participant emits only the preamble string, then stops — the MCP tool is never called.
+
+The MCP server is running and its tools are discovered (visible in the MCP log), but in 1.123 they appear to be deferred behind `tool_search`, so the model halts after the preamble instead of invoking them.
+
+### Steps to Reproduce
+1. Configure an MCP server exposing custom tools.
+2. Use a chat participant that calls one of those tools.
+3. Send `@my-chat-participant generate ...`.
+4. **<=1.122:** preamble -> tool call -> response.
+5. **1.123:** preamble only, then stops.
+
+### Expected
+After the preamble, the participant calls the MCP tool and completes the response (as in <=1.122).
+
+### Actual
+Only the preamble is generated; no tool call; generation stops.
+
+### Expected behavior proof (1.122 debug trace)
+
+Captured from the chat debug tool on 1.122. After the preamble, the MCP tools are called **directly** — there is **no `tool_search`**, because the tools were active (not deferred):
+
+```
+Sure, let me gather the configuration details first.
+🛠️ mcp_myserver_get_overview (toolu_01NcR2YAcTkyYgVSbbtG9hPr)
+🛠️ mcp_myserver_list_items (toolu_01KNiYpZUb3skfRdyfREvXrS) {
+  ""subscription"": ""<redacted>"",
+  ""resourceGroup"": ""<redacted>"",
+  ""instance"": ""<redacted>""
+}
+🛠️ mcp_myserver_list_sources (toolu_016cSYoAXH36gyfgykMUJNF4) {
+  ""subscription"": ""<redacted>"",
+  ""resourceGroup"": ""<redacted>"",
+  ""namespace"": ""<redacted>""
+}
+```
+
+In 1.122 the tools were active (schemas sent directly), so the model called them immediately with no `tool_search` step. In 1.123 the same setup defers these tools, and the model stops after the preamble without issuing the `tool_search` needed to load and call them.
+
+### Actual behavior (1.123 debug trace)
+
+Captured from the chat debug tool on 1.123. The model emits only the preamble — no tool call, no `tool_search` — then stops:
+
+```
+Sure, let me gather the configuration details first.
+```
+
+### The two paths side by side
+
+|                | 1.122 (working)                  | 1.123 (broken)                          |
+| -------------- | -------------------------------- | --------------------------------------- |
+| Tool state     | **Active** — schemas sent directly | **Deferred** — behind virtualization    |
+| After preamble | Calls MCP tool directly          | Should call `tool_search` first...      |
+| Actual result  | Full response                    | ...but stops at the preamble            |
+
+### Additional context
+- **Configure Tools** shows only ~86 selected tools — below the default `virtualTools` threshold of 128 — yet the MCP tools are still deferred.
+- `virtualTools.threshold` appears capped at 128, so it can't be raised above the tool count as a workaround.
+
+### Questions
+1. Did tool-grouping / virtual-tools deferral change between 1.122 and 1.123?
+2. Is deferral now applied per-MCP-server rather than on the global total?
+3. In a chat-participant flow, why does the model stop after the preamble instead of issuing a `tool_search` to load and then call the deferred tool?
+",,https://github.com/microsoft/vscode/issues/320529
+microsoft/vscode,Delete action missing on agent host sessions,"We have ""archive"" but no ""delete""",bug agent-host,https://github.com/microsoft/vscode/issues/320522
+microsoft/vscode,Opus 4.7 image attachment does not work with Copilot CLI through Agent Host,"Simple prompt to Opus 4.7 with attached image -> model says it does not see the image.
+Logs attached.
+
+[ah-logs-why-are-we-getting-these-errors-do-we-pu.zip](https://github.com/user-attachments/files/28729204/ah-logs-why-are-we-getting-these-errors-do-we-pu.zip)
+
+",bug chat-vision copilot-cli-agent agent-host,https://github.com/microsoft/vscode/issues/320516
+microsoft/vscode,Hovering over issues makes them jump around,"This doesn't happen on all sessions. Running from source on 868350b669c208536c2dd73ad7d364b514854dce . I also noticed this warning in dev tools:
+
+```
+Measuring item node that is not in DOM! Add ListView to the DOM before measuring row height! Error
+    at _ListView.probeDynamicHeightForItem (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/listView.js:1216:120)
+    at _ListView.probeDynamicHeight (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/listView.js:1188:23)
+    at _ListView._rerender (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/listView.js:1146:27)
+    at _ListView._splice (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/listView.js:487:12)
+    at _ListView.splice (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/listView.js:398:19)
+    at vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/splice.js:6:39
+    at Array.forEach (<anonymous>)
+    at CombinedSpliceable.splice (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/splice.js:6:22)
+    at vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/listWidget.js:1208:59
+    at EventBufferer.bufferEvents (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/common/event.js:1080:15)
+    at TreeNodeList.splice (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/list/listWidget.js:1208:24)
+    at TreeNodeList.splice (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/abstractTree.js:1824:11)
+    at UniqueContainer.value (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/abstractTree.js:2398:110)
+    at Emitter._deliver (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/common/event.js:792:16)
+    at Emitter._deliverQueue (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/common/event.js:801:12)
+    at Emitter.fire (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/common/event.js:821:12)
+    at IndexTreeModel.spliceSimple (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/indexTreeModel.js:176:38)
+    at IndexTreeModel.spliceSmart (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/indexTreeModel.js:70:19)
+    at IndexTreeModel.splice (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/indexTreeModel.js:62:12)
+    at ObjectTreeModel._setChildren (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/objectTreeModel.js:64:16)
+    at ObjectTreeModel.setChildren (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/objectTreeModel.js:29:10)
+    at WorkbenchObjectTree.setChildren (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/base/browser/ui/tree/objectTree.js:25:16)
+    at vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/workbench/contrib/chat/browser/widget/chatListWidget.js:351:18
+    at ChatListWidget._withPersistedAutoScroll (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/workbench/contrib/chat/browser/widget/chatListWidget.js:514:5)
+    at ChatListWidget.refresh (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/workbench/contrib/chat/browser/widget/chatListWidget.js:350:10)
+    at AgentSessionHoverWidget.render (vscode-file://vscode-app/Users/alex/src/vscode.worktrees/agents-render-keybindings-for-actions/out/vs/workbench/contrib/chat/browser/agentSessions/agentSessionHoverWidget.js:109:16)
+```
+
+https://github.com/user-attachments/assets/1a9e1c7d-8dca-4c59-a81a-d05a6e581e6f",agent-host,https://github.com/microsoft/vscode/issues/320509
+tensorflow/tensorflow,Enhancement: Add AutoML capabilities and automated hyperparameter tuning,"## Problem Statement
+No AutoML:
+- Manual tuning required
+- Time-consuming
+- Suboptimal models
+
+**Business Impact:** Manual work
+**Technical Impact:** No AutoML
+
+## Root Cause Analysis
+No automation. Manual only.
+
+## Solution Overview
+1. AutoML: automated pipeline
+2. HPO: hyperparameter optimization
+3. NAS: neural architecture search
+4. Ensemble: ensemble methods
+5. Monitoring: performance monitoring
+
+## Type of Change
+- Feature: AutoML
+
+## Testing Done
+- AutoML test: works
+- HPO test: optimizes
+- NAS test: finds architectures
+
+## Related Issue
+Relates to automation
+
+## Suggested Labels
+feature, automl, ml, gssoc26",,https://github.com/tensorflow/tensorflow/issues/120669
+tensorflow/tensorflow,"Bug: Memory usage grows unbounded during training, OOM crashes","## Problem Statement
+Memory leak:
+- Unbounded growth
+- OOM crashes
+- Cannot train
+
+**Business Impact:** Cannot train
+**Technical Impact:** Memory leak
+
+## Root Cause Analysis
+No cleanup. Accumulation of tensors.
+
+## Solution Overview
+1. Cleanup: proper cleanup
+2. Profiling: memory profiling
+3. Optimization: optimize usage
+4. Monitoring: memory monitoring
+5. Testing: memory tests
+
+## Type of Change
+- Bug fix: Memory management
+
+## Testing Done
+- Leak test: no leak
+- Profiling test: stable
+- Training test: completes
+
+## Related Issue
+Relates to stability
+
+## Suggested Labels
+bug, memory, stability, gssoc26",type:bug,https://github.com/tensorflow/tensorflow/issues/120668
+tensorflow/tensorflow,Security: TensorFlow models vulnerable to adversarial attacks,"## Problem Statement
+Adversarial weak:
+- Models fooled easily
+- Security risk
+- Real-world risk
+
+**Business Impact:** Security risk
+**Technical Impact:** No robustness
+
+## Root Cause Analysis
+No adversarial training. Vulnerable models.
+
+## Solution Overview
+1. Training: adversarial training
+2. Detection: detect attacks
+3. Robustness: improve robustness
+4. Evaluation: evaluate robustness
+5. Guidelines: security guidelines
+
+## Type of Change
+- Security fix: Adversarial robustness
+
+## Testing Done
+- Attack test: robust
+- Detection test: detects
+- Robustness test: improved
+
+## Related Issue
+Relates to security
+
+## Suggested Labels
+security, adversarial, critical, gssoc26",,https://github.com/tensorflow/tensorflow/issues/120667
+tensorflow/tensorflow,Enhancement: Add better model compression and quantization support,"## Problem Statement
+No compression:
+- Models too large
+- Slow inference
+- Mobile unusable
+
+**Business Impact:** Limited deployment
+**Technical Impact:** No compression
+
+## Root Cause Analysis
+No compression support. Size issues.
+
+## Solution Overview
+1. Quantization: 8-bit quantization
+2. Pruning: model pruning
+3. Distillation: knowledge distillation
+4. Tools: compression tools
+5. Documentation: compression guide
+
+## Type of Change
+- Feature: Model compression
+
+## Testing Done
+- Compression test: effective
+- Quality test: maintained
+- Size test: smaller
+
+## Related Issue
+Relates to deployment
+
+## Suggested Labels
+feature, compression, deployment, gssoc26",,https://github.com/tensorflow/tensorflow/issues/120666
+tensorflow/tensorflow,"Bug: Model serving performance inconsistent, latency spikes","## Problem Statement
+Serving slow:
+- Latency spikes
+- Inconsistent perf
+- Production issues
+
+**Business Impact:** Slow inference
+**Technical Impact:** Performance
+
+## Root Cause Analysis
+No optimization. Resource contention.
+
+## Solution Overview
+1. Batching: batch requests
+2. Caching: cache models
+3. Profiling: identify bottlenecks
+4. Optimization: optimize ops
+5. Testing: load test
+
+## Type of Change
+- Bug fix: Performance
+
+## Testing Done
+- Latency test: stable
+- Throughput test: improved
+- Load test: handles
+
+## Related Issue
+Relates to serving
+
+## Suggested Labels
+bug, serving, performance, gssoc26",type:bug type:performance,https://github.com/tensorflow/tensorflow/issues/120665
+langchain-ai/langchain,feat(langchain): add custom message param to ToolCallLimitMiddleware,"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [x] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+`ToolCallLimitMiddleware` blocks a tool call once a thread/run limit is hit and injects an error `ToolMessage` back to the model. That message is currently hardcoded , e.g. `""Tool call limit exceeded. Do not call '<tool>' again.""` (or an all-tools variant). 
+
+I'd like an optional `message` parameter so callers can customize the content of that error `ToolMessage` without subclassing the middleware. Scope would be intentionally narrow: the override applies only to the blocked-call `ToolMessage` (the model-facing signal) in the `'continue'` and `'end'` exit behaviors. 
+
+The `'end'` summary `AIMessage` and the `ToolCallLimitExceededError` would keep their thread/run diagnostic detail. 
+The default (`message=None`) stays exactly as it is today.
+
+### Use Case
+
+The blocked-call `ToolMessage` is the model's only signal about what happened, and it drives what the model does next. A fixed ""do not call X again"" string works generically but can't carry domain context. 
+
+Concrete example: in a human-handoff flow, once a conversation is handed to a human we want to tell the model something specific , e.g. ""This conversation was already handed off to a human; tell the user to wait for an agent instead of calling 'handoff' again."" Today the only ways to change that text are to subclass the middleware or monkeypatch the internal helper that builds the message , both brittle and not per-instance.
+
+### Proposed Solution
+
+Add `message: str | None = None` (keyword-only) to `ToolCallLimitMiddleware.__init__`. When set, it replaces the auto-generated `ToolMessage` content for blocked calls; when `None`, behavior is unchanged.
+ 
+```python
+limiter = ToolCallLimitMiddleware(
+    tool_name=""handoff"",
+    run_limit=1,
+    message=(
+        ""This conversation was already handed off to a human. ""
+        ""Tell the user to wait for an agent instead of calling 'handoff' again.""
+    ),
+)
+```
+
+### Alternatives Considered
+
+1. Subclassing `ToolCallLimitMiddleware` and overriding `after_model` , duplicates non-trivial limit/counting logic and is fragile across releases.
+
+### Additional Context
+
+Affects `langchain.agents.middleware.tool_call_limit.ToolCallLimitMiddleware` (langchain `1.3.x`). 
+
+From my end a GitHub search didn't surface an existing request for a customizable blocked-call message. Happy to adjust scope or naming per maintainer preference.",langchain feature request external,https://github.com/langchain-ai/langchain/issues/37970
+langchain-ai/langchain,refactor: migrate legacy pydantic .dict() to .model_dump(),"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+""I propose migrating the deprecated Pydantic v1 .dict() method calls to the modern .model_dump() method. This ensures better compatibility with Pydantic v2 and eliminates deprecation warnings in current implementations.""
+
+### Use Case
+
+""I have identified instances where .dict() is used and am prepared to replace them with .model_dump(), ensuring all arguments (such as exclude_none or exclude_unset) are correctly mapped to their .model_dump() equivalents.""
+
+### Proposed Solution
+
+""I have identified instances where .dict() is used and am prepared to replace them with .model_dump(), ensuring all arguments (such as exclude_none or exclude_unset) are correctly mapped to their .model_dump() equivalents.""
+
+### Alternatives Considered
+
+""Ignoring the deprecation warnings, but that is not sustainable for long-term project health.""
+
+### Additional Context
+
+_No response_",core feature request external,https://github.com/langchain-ai/langchain/issues/37949
+langchain-ai/langchain,Update deprecated OpenAI computer-use-preview support for the current OpenAI `computer` tool,"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [ ] langchain
+- [x] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+LangChain currently has a legacy OpenAI computer-use implementation that was designed around the `computer-use-preview` model. OpenAI has deprecated `computer-use-preview` and recommends migrating to the current Responses API `computer` tool.
+
+This feature request is to update LangChain's OpenAI computer-use support so that the current OpenAI `computer` tool works through the same standard tool-call / agent-loop pattern used by other provider integrations, such as Anthropic and Google.
+
+The requested behavior is:
+
+1. Treat the current OpenAI Responses API `computer` tool as the primary OpenAI computer-use path.
+2. Expose OpenAI model-requested computer actions as executable LangChain tool calls, or an equivalent LangChain-native executable representation.
+3. Allow `create_agent()` and the standard LangChain agent loop to execute OpenAI computer actions.
+4. Return action results to OpenAI as `computer_call_output`, while preserving the original OpenAI `call_id`.
+5. Remove or replace assumptions specific to the deprecated `computer-use-preview` path.
+
+Because `computer-use-preview` is deprecated and will no longer be usable, backward compatibility for that preview-specific path should not be necessary. In addition, the preview model was not broadly available as a general public model, so maintaining the old path may not be worth the added complexity.
+
+### Use Case
+
+Developers should be able to build OpenAI computer-use agents with the same LangChain patterns used for other providers.
+
+For example, Anthropic and Google computer-use integrations can return executable LangChain tool calls that are handled by the standard agent loop. OpenAI's current Responses API `computer` tool should work similarly.
+
+This is especially important for applications that need provider-agnostic computer-use agents. In those systems, the model may request actions such as screenshots, clicks, typing, scrolling, or other computer operations. LangChain should surface those requests in a way that the standard agent loop can execute.
+
+This is closely related to issue #37937:
+
+https://github.com/langchain-ai/langchain/issues/37937
+
+In that issue, I described the concrete execution problem: OpenAI's current Responses API `computer` tool returns a valid `computer_call`, but LangChain keeps it in `AIMessage.content`, so `create_agent()` does not execute the requested computer action.
+
+This feature request focuses on the broader migration path: since `computer-use-preview` is deprecated, now seems like the right time to update the OpenAI computer-use integration around the current `computer` tool and make it consistent with LangChain's other computer-use integrations.
+
+### Proposed Solution
+
+Update the OpenAI computer-use implementation so that the current Responses API `computer` tool participates in the standard LangChain tool-call / agent-loop flow.
+
+At a high level, the implementation should:
+
+1. Detect OpenAI Responses API `computer_call` items.
+2. Convert those items into executable LangChain tool calls, or an equivalent LangChain-native representation.
+3. Preserve the OpenAI `call_id` across the action execution and `computer_call_output` round trip.
+4. Return screenshot results using the current `computer_call_output.output.type == ""computer_screenshot""` shape.
+5. Remove or replace preview-specific assumptions from the old `computer-use-preview` implementation.
+6. Avoid maintaining backward compatibility for `computer-use-preview`, since this path is deprecated and will no longer be usable.
+
+I already have a local prototype that addresses this feature request together with #37937. The code has been tested in a production-level computer-use environment. The environment itself is research-related and cannot be shared publicly, but the modified LangChain code successfully executes OpenAI computer-use actions through the standard agent/tool-call flow.
+
+If this direction sounds acceptable, I would be happy to open a PR with tests.
+
+### Alternatives Considered
+
+One alternative would be to keep the existing `computer-use-preview` path and add a separate implementation for the current OpenAI `computer` tool.
+
+I do not think this is ideal because `computer-use-preview` is deprecated and will no longer be usable. Keeping the preview-specific path as a first-class implementation may add unnecessary complexity.
+
+Another alternative would be to keep exposing OpenAI `computer_call` items only through `AIMessage.content` and require users to implement a custom execution loop. This works for advanced users, but it is inconsistent with Anthropic and Google computer-use integrations and makes OpenAI computer use difficult to use with normal LangChain agent workflows.
+
+### Additional Context
+
+This feature request is related to issue #37937:
+
+https://github.com/langchain-ai/langchain/issues/37937
+
+Issue #37937 focuses on the current execution failure: OpenAI returns a valid `computer_call`, but LangChain does not execute it as a tool call.
+
+This feature request focuses on the migration and design direction: because `computer-use-preview` is deprecated, LangChain should update the OpenAI computer-use integration around the current Responses API `computer` tool and make it consistent with the standard LangChain tool-call / agent-loop pattern.
+",core feature request openai external,https://github.com/langchain-ai/langchain/issues/37938
+langchain-ai/langchain,OpenAI computer-use tool calls are not executed as LangChain tool calls,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [x] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+Issue #37938 explains an additional motivation for updating OpenAI computer-use support: the legacy computer-use-preview path is deprecated, and the current OpenAI direction is the Responses API computer tool.
+
+Together, this issue and #37938 suggest that now is a good time to update LangChain's OpenAI computer-use integration more broadly: this issue shows that the current computer tool is not executed through the standard agent loop, while #37938 explains why continuing to rely on the older preview-specific path is no longer appropriate.
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+from langchain.agents import create_agent
+from langchain_core.messages import AIMessage
+from langchain_openai import ChatOpenAI
+
+# Helper to challenge the computer tool
+def test_computer_tool(model, computer_use_tool):
+    agent = create_agent(
+        model=model,
+        tools = [computer_use_tool],
+    )
+    result = agent.invoke(
+        {""messages"": [
+            {
+                ""role"": ""user"",
+                ""content"": ""Take a screenshot of the current computer screen.""
+            }
+        ]},
+    )
+    for r in result[""messages""]:
+        if isinstance(r, AIMessage):
+            # Tool calls
+            if r.tool_calls:
+                print(""=== Computer tools successfully called ✅ ==="")
+                for i, c in enumerate(r.tool_calls):
+                    print(f""Tool No. {i + 1}:"")
+                    print(c)
+                print(""=========================================="")
+            else:
+                print(""=== No computer tools were called ‼️ ===="")
+                print(""Instead, the following message was generated:"")
+                print(r.content[0])
+                print(""======================================="")
+
+
+model = ChatOpenAI(
+    model=""gpt-5.4"",
+    use_responses_api=True,
+    api_key=OPENAI_API_KEY,
+)
+openai_computer_tool = {""type"":""computer""}
+
+test_computer_tool(model, openai_computer_tool)
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+from langchain.agents import create_agent
+from langchain_core.messages import AIMessage
+from langchain_openai import ChatOpenAI
+
+# Helper to challenge the computer tool
+def test_computer_tool(model, computer_use_tool):
+    agent = create_agent(
+        model=model,
+        tools = [computer_use_tool],
+    )
+    result = agent.invoke(
+        {""messages"": [
+            {
+                ""role"": ""user"",
+                ""content"": ""Take a screenshot of the current computer screen.""
+            }
+        ]},
+    )
+    for r in result[""messages""]:
+        if isinstance(r, AIMessage):
+            # Tool calls
+            if r.tool_calls:
+                print(""=== Computer tools successfully called ✅ ==="")
+                for i, c in enumerate(r.tool_calls):
+                    print(f""Tool No. {i + 1}:"")
+                    print(c)
+                print(""=========================================="")
+            else:
+                print(""=== No computer tools were called ‼️ ===="")
+                print(""Instead, the following message was generated:"")
+                print(r.content[0])
+                print(""======================================="")
+
+
+model = ChatOpenAI(
+    model=""gpt-5.4"",
+    use_responses_api=True,
+    api_key=OPENAI_API_KEY,
+)
+openai_computer_tool = {""type"":""computer""}
+
+test_computer_tool(model, openai_computer_tool)
+```
+
+### Description
+
+## Description
+
+LangChain does not currently execute OpenAI Responses API `computer` tool requests through the standard LangChain tool-call loop.
+
+When `ChatOpenAI(..., use_responses_api=True)` is used with:
+
+```python
+tools = [{""type"": ""computer""}]
+```
+
+OpenAI correctly returns a `computer_call`, such as a screenshot request. However, LangChain keeps this `computer_call` inside `AIMessage.content` instead of exposing it as an executable `AIMessage.tool_calls` entry.
+
+As a result, `create_agent()` does not execute the requested computer action. In practice, the model asks to use the computer, but the LangChain agent loop silently stops without running the computer-use tool.
+
+This makes OpenAI computer use difficult to integrate with LangChain agents, even though similar computer-use tools from Anthropic and Google are exposed as executable LangChain tool calls.
+
+## Reproduction: OpenAI
+
+```python
+from langchain.agents import create_agent
+from langchain_core.messages import AIMessage
+from langchain_openai import ChatOpenAI
+
+
+def test_computer_tool(model, computer_use_tool):
+    agent = create_agent(
+        model=model,
+        tools=[computer_use_tool],
+    )
+
+    result = agent.invoke(
+        {
+            ""messages"": [
+                {
+                    ""role"": ""user"",
+                    ""content"": ""Take a screenshot of the current computer screen."",
+                }
+            ]
+        }
+    )
+
+    for message in result[""messages""]:
+        if isinstance(message, AIMessage):
+            if message.tool_calls:
+                print(""=== Computer tools successfully called ==="")
+                for i, call in enumerate(message.tool_calls):
+                    print(f""Tool No. {i + 1}:"")
+                    print(call)
+                print(""=========================================="")
+            else:
+                print(""=== No computer tools were called ==="")
+                print(""Instead, the following message was generated:"")
+                print(message.content[0])
+                print(""======================================="")
+
+
+model = ChatOpenAI(
+    model=""gpt-5.4"",
+    use_responses_api=True,
+    api_key=OPENAI_API_KEY,
+)
+
+openai_computer_tool = {""type"": ""computer""}
+
+test_computer_tool(model, openai_computer_tool)
+```
+
+## Actual behavior
+
+OpenAI returns a `computer_call`, but LangChain does not execute it as a tool call.
+
+Example output:
+
+```text
+=== No computer tools were called ===
+Instead, the following message was generated:
+{
+    ""id"": ""cu_045c3f3a182597c8006a23eb617b24819a91a7a89d4786a09e"",
+    ""call_id"": ""call_3cNfranspy4UFye2mJ8tyKQs"",
+    ""status"": ""completed"",
+    ""type"": ""computer_call"",
+    ""actions"": [
+        {""type"": ""screenshot""}
+    ],
+}
+=======================================
+```
+
+So the model did request a computer action, but the LangChain agent loop did not execute it.
+
+## Expected behavior
+
+OpenAI `computer_call` outputs should be exposed to LangChain agents as executable tool calls.
+
+For example, the screenshot request above should result in something equivalent to:
+
+```python
+{
+    ""name"": ""computer_call"",
+    ""args"": {""action"": ""screenshot""},
+    ""id"": ""call_3cNfranspy4UFye2mJ8tyKQs"",
+    ""type"": ""tool_call"",
+}
+```
+
+or another LangChain-native representation that allows the agent loop to execute the computer action and return the corresponding `computer_call_output`.
+
+## Comparison with other providers
+
+Using the same helper function, Anthropic and Google computer-use integrations return executable LangChain tool calls.
+
+This suggests that the issue is specific to how OpenAI Responses API `computer_call` items are represented in LangChain.
+
+<details>
+<summary>Anthropic example</summary>
+
+```python
+from langchain_anthropic import ChatAnthropic
+
+model = ChatAnthropic(
+    model=""claude-sonnet-4-6"",
+    anthropic_api_key=ANTHROPIC_API_KEY,
+)
+
+anthropic_computer_tool = {
+    ""type"": ""computer_20251124"",
+    ""name"": ""computer"",
+    ""display_width_px"": 1400,
+    ""display_height_px"": 900,
+    ""display_number"": 99,
+    ""enable_zoom"": False,
+}
+
+test_computer_tool(model, anthropic_computer_tool)
+```
+
+Output:
+
+```text
+=== Computer tools successfully called ===
+Tool No. 1:
+{
+    ""name"": ""computer"",
+    ""args"": {""action"": ""screenshot""},
+    ""id"": ""toolu_01MCjE9jnymndUZAMzHEqkWA"",
+    ""type"": ""tool_call"",
+}
+==========================================
+```
+
+</details>
+
+<details>
+<summary>Google example</summary>
+
+```python
+from langchain_google_genai import ChatGoogleGenerativeAI, Environment
+
+model = ChatGoogleGenerativeAI(
+    model=""gemini-3-flash-preview"",
+    google_api_key=GOOGLE_API_KEY,
+)
+
+gemini_computer_tool = {
+    ""computer_use"": {
+        ""environment"": Environment.ENVIRONMENT_BROWSER,
+        ""excludedPredefinedFunctions"": [],
+    }
+}
+
+test_computer_tool(model, gemini_computer_tool)
+```
+
+Output:
+
+```text
+=== Computer tools successfully called ===
+Tool No. 1:
+{
+    ""name"": ""open_web_browser"",
+    ""args"": {},
+    ""id"": ""b6u5u9qv"",
+    ""type"": ""tool_call"",
+}
+==========================================
+```
+
+</details>
+
+## Related context
+
+Before PR #36261 added `""computer""` to `_WellKnownOpenAITools`, passing `{""type"": ""computer""}` raised an explicit error.
+
+After that PR, the error no longer occurs, but the returned OpenAI `computer_call` still does not participate in the standard LangChain tool execution loop.
+
+The current behavior is therefore silent: OpenAI returns a valid `computer_call`, but LangChain does not execute the requested computer action.
+
+## Suggested fix
+
+OpenAI Responses API `computer_call` items should be converted into a LangChain-native executable tool-call representation.
+
+The conversion should preserve the OpenAI `call_id`, because the follow-up response must be sent back as `computer_call_output`.
+
+A possible mapping could be:
+
+```python
+{
+    ""type"": ""computer_call"",
+    ""call_id"": ""call_..."",
+    ""actions"": [
+        {""type"": ""screenshot""}
+    ],
+}
+```
+
+to something conceptually equivalent to:
+
+```python
+{
+    ""name"": ""computer"",
+    ""args"": {""action"": ""screenshot""},
+    ""id"": ""call_..."",
+    ""type"": ""tool_call"",
+}
+```
+
+For multiple actions, LangChain could either emit multiple tool calls or use another LangChain-native representation that can be executed by the standard agent loop.
+
+I already have a local prototype and have tested it in a production-level computer-use environment. The environment itself is research-related and cannot be shared publicly, but the modified LangChain code successfully allows OpenAI computer actions to be executed through the standard agent/tool-call flow.
+
+I have a proposed implementation that addresses both issues together. If this direction sounds acceptable, I would be happy to open a PR with tests.
+
+
+### System Info
+
+
+System Information
+------------------
+> OS:  Darwin
+> OS Version:  Darwin Kernel Version 24.2.0: Fri Dec  6 19:03:40 PST 2024; root:xnu-11215.61.5~2/RELEASE_ARM64_T6041
+> Python Version:  3.13.11 (main, Jan 13 2026, 22:52:06) [Clang 16.0.0 (clang-1600.0.26.6)]
+
+Package Information
+-------------------
+> langchain_core: 1.4.1
+> langchain: 1.2.15
+> langsmith: 0.7.32
+> langchain_anthropic: 1.4.4
+> langchain_google_genai: 4.2.4
+> langchain_openai: 1.1.14
+> langchain_protocol: 0.0.16
+> langgraph_sdk: 0.3.13
+
+Optional packages not installed
+-------------------------------
+> deepagents
+> deepagents-cli
+
+Other Dependencies
+------------------
+> anthropic: 0.106.0
+> filetype: 1.2.0
+> google-genai: 2.8.0
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> langgraph: 1.1.8
+> openai: 2.32.0
+> orjson: 3.11.8
+> packaging: 26.1
+> pydantic: 2.13.2
+> pyyaml: 6.0.3
+> requests: 2.33.1
+> requests-toolbelt: 1.0.0
+> tenacity: 9.1.4
+> tiktoken: 0.12.0
+> typing-extensions: 4.15.0
+> uuid-utils: 0.14.1
+> websockets: 16.0
+> xxhash: 3.6.0
+> zstandard: 0.25.0",bug core openai external,https://github.com/langchain-ai/langchain/issues/37937
+langchain-ai/langchain,create_agent discards state_schema subclass in inferred return type,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [x] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+- #33732 (closed Nov 2025 referencing #33817 as the fix). #33817 **partially** fixed the original request — it introduced `StateT_co` and rewired the `middleware` parameter from `AgentMiddleware[AgentState[ResponseT], ContextT]` to `AgentMiddleware[StateT_co, ContextT]`, but it did **not** update `state_schema` or the return type. The original ask in #33732 was for `state_schema` and the return type to use `StateT` as well; that half was not landed.
+- #34156 (related: custom state schema doesn't propagate to middleware)
+- langchain-ai/langgraph#6175 (related upstream discussion)
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+from typing import Annotated, NotRequired
+
+from langchain.agents import AgentState, create_agent
+from langchain_core.language_models.fake_chat_models import FakeListChatModel
+
+
+class MyState(AgentState):
+    counter: NotRequired[int]
+
+
+graph = create_agent(
+    model=FakeListChatModel(responses=[""ok""]),
+    tools=[],
+    state_schema=MyState,
+)
+
+# Static type checkers (mypy / pyrefly / pyright) infer `graph` as
+#   CompiledStateGraph[AgentState[ResponseT], ContextT, _InputAgentState, _OutputAgentState[ResponseT]]
+# The `MyState` subclass passed via `state_schema` is erased from the return type,
+# even though it's the schema the graph actually runs with.
+reveal_type(graph)  # noqa: F821
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+Not a runtime error — a type-inference issue. `reveal_type` (or hovering in an IDE) reports
+`CompiledStateGraph[AgentState[Any], …]` instead of `CompiledStateGraph[MyState, …]`.
+
+Downstream, anything declared as `CompiledStateGraph[MyState, …]` (e.g. a helper that wants
+to receive the compiled graph with full state precision) fails to type-check against
+`create_agent`'s inferred return, forcing a `cast` at every call site.
+```
+
+### Description
+
+`langchain.agents.create_agent` accepts `state_schema: type[AgentState[ResponseT]] | None`
+and returns `CompiledStateGraph[AgentState[ResponseT], ContextT, _InputAgentState, _OutputAgentState[ResponseT]]`
+(see `libs/langchain_v1/langchain/agents/factory.py` lines 684–702 on the
+installed release, lines 697–716 on `master`).
+
+The state-schema subclass is therefore erased from the return type — `create_agent(state_schema=MyState, …)`
+is inferred as `CompiledStateGraph[AgentState[…], …]`, not `CompiledStateGraph[MyState, …]`.
+
+This is inconsistent with the rest of the signature:
+
+- The `middleware` parameter is already typed with a `StateT_co` TypeVar bound to `AgentState[Any]`
+  (`middleware/types.py:372`), and that TypeVar is *used* on `middleware` (line 689) but **not** on
+  `state_schema` or in the return type. The TypeVar exists; it's just not wired through.
+
+**Why this is a bug (not just a polish nit):**
+
+- `CompiledStateGraph` is invariant in its first generic, so `CompiledStateGraph[MySubclass, …]`
+  is not assignable to `CompiledStateGraph[AgentState, …]` and vice versa. Subtyping does not
+  rescue downstream call sites.
+- Anyone holding a typed reference to the compiled graph in their own code (e.g. as a service
+  field) is forced to either: (a) `cast` at every boundary, (b) downgrade their alias to
+  `CompiledStateGraph[AgentState[Any], …]` and lose state precision, or (c) patch langchain locally.
+- Issue #33732 raised this in Nov 2025 with a working fork
+  ([LouisAuneau/langchain@6a33ada](https://github.com/LouisAuneau/langchain/commit/6a33adaa267d937d7fe0ac768f860e236a47a137))
+  and was closed referencing #33817. #33817 did land *part* of the original fix —
+  `StateT_co` was added and the `middleware` parameter now uses it — but the corresponding
+  changes to `state_schema` and the return type (the parts that actually affect
+  `create_agent`'s inferred return type) were not included. As of `langchain==1.3.4`
+  (latest on PyPI) and current `master`, lines 704 and 714–716 still hardcode
+  `state_schema: type[AgentState[ResponseT]]` and `CompiledStateGraph[AgentState[ResponseT], …]`.
+
+**Expected behaviour**
+
+`create_agent(state_schema=MyState, …)` should be inferred as
+`CompiledStateGraph[MyState, ContextT, _InputAgentState, _OutputAgentState[ResponseT]]`.
+
+**Proposed fix** (matches the reference fork, ~30 lines, strictly backward-compatible since
+`StateT` is bound to `AgentState`):
+
+```python
+# factory.py
+from langchain.agents.middleware.types import StateT  # already defined there
+
+def create_agent(
+    model: str | BaseChatModel,
+    tools: Sequence[BaseTool | Callable[..., Any] | dict[str, Any]] | None = None,
+    *,
+    system_prompt: str | SystemMessage | None = None,
+    middleware: Sequence[AgentMiddleware[StateT, ContextT]] = (),
+    response_format: ResponseFormat[ResponseT] | type[ResponseT] | dict[str, Any] | None = None,
+    state_schema: type[StateT] | None = None,           # was: type[AgentState[ResponseT]]
+    context_schema: type[ContextT] | None = None,
+    ...,
+) -> CompiledStateGraph[
+    StateT, ContextT, _InputAgentState, _OutputAgentState[ResponseT]   # was: AgentState[ResponseT]
+]:
+    ...
+```
+
+Reference implementation: [LouisAuneau/langchain@6a33ada](https://github.com/LouisAuneau/langchain/commit/6a33adaa267d937d7fe0ac768f860e236a47a137).
+
+Happy to open a PR with this change if there's interest.
+
+### System Info
+
+```
+System Information
+------------------
+> OS:  Darwin
+> OS Version:  Darwin Kernel Version 25.1.0: Mon Oct 20 19:33:00 PDT 2025; root:xnu-12377.41.6~2/RELEASE_ARM64_T6020
+> Python Version:  3.12.9 (main, Mar 17 2025, 21:36:21) [Clang 20.1.0 ]
+
+Package Information
+-------------------
+> langchain_core: 1.3.2
+> langchain: 1.2.15
+> langsmith: 0.4.29
+> langchain_cerebras: 0.8.2
+> langchain_groq: 1.1.0
+> langchain_mcp_adapters: 0.2.2
+> langchain_openai: 1.2.1
+> langchain_protocol: 0.0.13
+> langchain_tavily: 0.2.13
+> langgraph_sdk: 0.3.13
+```
+
+(Also reproduced against `langchain==1.3.4`, latest on PyPI — same signature.)
+",bug langchain external,https://github.com/langchain-ai/langchain/issues/37921
+langchain-ai/langchain,Add `BackendIntegrationTests` for Deep Agents `BackendProtocol` implementations,"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [x] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+`langchain-tests` currently provides `SandboxIntegrationTests` for Deep Agents `SandboxBackendProtocol` implementations, but there does not appear to be an equivalent standard test suite for plain `BackendProtocol` implementations.
+
+I’d like to propose adding a `BackendIntegrationTests` suite for storage/filesystem backends that implement:
+
+- `read` / `aread`
+- `write` / `awrite`
+- `edit` / `aedit`
+- `ls` / `als`
+- `glob` / `aglob`
+- `grep` / `agrep`
+- `upload_files` / `aupload_files`
+- `download_files` / `adownload_files`
+
+This would give backend integration authors a standard compatibility suite without requiring sandbox execution support.
+
+### Use Case
+
+This would help developers building Deep Agents backend integrations for storage systems such as Azure Blob Storage, S3, Postgres, local/remote filesystems, or other virtual filesystem implementations.
+
+These backends may implement `BackendProtocol` fully but may not support `SandboxBackendProtocol.execute()`. A backend-only standard test suite would let integration authors verify that their implementation satisfies the expected filesystem contract in the same spirit that `SandboxIntegrationTests` validates sandbox integrations.
+
+### Proposed Solution
+
+Add a new standard test class, for example:
+
+```python
+from langchain_tests.integration_tests import BackendIntegrationTests
+```
+
+Example usage:
+
+```python
+from collections.abc import Iterator
+
+import pytest
+from deepagents.backends.protocol import BackendProtocol
+from langchain_tests.integration_tests import BackendIntegrationTests
+
+from my_package import make_backend
+
+
+class TestMyBackendStandard(BackendIntegrationTests):
+    @pytest.fixture(scope=""class"")
+    def backend(self) -> Iterator[BackendProtocol]:
+        backend = make_backend()
+        try:
+            yield backend
+        finally:
+            backend.close()
+```
+
+The suite should use only `BackendProtocol` methods for setup and assertions.
+
+Suggested coverage:
+
+- create text files with `write`
+- create binary files with `upload_files`
+- verify text reads with `read`
+- verify byte round trips with `download_files`
+- verify directory listing with `ls`
+- verify glob matching with `glob`
+- verify literal search with `grep`
+- verify string replacement with `edit`
+- verify async methods where supported
+- verify expected error behavior for missing files, existing files, invalid relative paths, and multi-match edits
+
+The suite should avoid shell-dependent setup/assertions such as:
+
+- `execute(""cat ..."")`
+- `mkdir`
+- `rm`
+- `chmod`
+- `wc`
+- POSIX permission checks
+- assumptions that require real empty directories unless `BackendProtocol` explicitly requires them
+
+Longer term, `SandboxIntegrationTests` could subclass `BackendIntegrationTests`, since `SandboxBackendProtocol` inherits from `BackendProtocol` and adds `execute()` / `aexecute()`.
+
+A possible structure:
+
+```python
+class BackendIntegrationTests(BaseStandardTests):
+    """"""Standard tests for BackendProtocol implementations.""""""
+
+
+class SandboxIntegrationTests(BackendIntegrationTests):
+    """"""Standard tests for SandboxBackendProtocol implementations.""""""
+
+    # Additional execute/aexecute and sandbox-specific tests.
+```
+
+This does not need to happen in the first PR. It may be cleaner to add `BackendIntegrationTests` first, then refactor `SandboxIntegrationTests` later once the backend-only contract is established.
+
+### Alternatives Considered
+
+Without this feature, each backend integration author needs to maintain their own protocol test suite. That can lead to inconsistent coverage across backend implementations, and some integrations may accidentally pass local tests while only partially implementing the expected `BackendProtocol` behavior.
+
+### Additional Context
+
+Motivation: I’m working on an Azure Blob Storage backend for Deep Agents: [oddrationale/deepagents-azure-blob-backend](https://github.com/oddrationale/deepagents-azure-blob-backend).",standard-tests feature request external,https://github.com/langchain-ai/langchain/issues/37905
+langchain-ai/langchain,convert_to_openai_messages mutates the caller's input message in place,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+_No response_
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+from langchain_core.messages import HumanMessage
+from langchain_core.messages.utils import convert_to_openai_messages
+
+# A file content block with no ""filename"":
+file_block = {
+    ""type"": ""file"",
+    ""file"": {""file_data"": ""data:application/pdf;base64,QQ==""},
+}
+message = HumanMessage(content=[file_block])
+
+convert_to_openai_messages([message])
+
+# BUG: the caller's own block was mutated in place
+print(file_block[""file""].get(""filename""))  # -> 'LC_AUTOGENERATED'  (expected: None)
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+
+```
+
+### Description
+
+`convert_to_openai_messages` rewrites the caller's own message dict while converting it. When an OpenAI file block has no filename, it does `block[""file""][""filename""] = ""LC_AUTOGENERATED""` on the passed-in object (`libs/core/langchain_core/messages/utils.py`, ~L1778) instead of building a new block, so the original message you passed in is silently modified after the call. Re-using the same message list (for example across providers) carries the mutation forward.
+
+Proposed fix: append a shallow copy carrying the fallback filename instead of mutating in place; output is byte-identical. I have a small fix plus the regression test shown above ready to PR. Could a maintainer assign this to me?
+
+### System Info
+
+Reproduced against `langchain-core` on current `master`; the mutation site is at `libs/core/langchain_core/messages/utils.py` L1778. Full environment via `python -m langchain_core.sys_info`: 
+# System Information
+------------------
+> OS:  Darwin
+> OS Version:  Darwin Kernel Version 25.3.0: Wed Jan 28 20:53:01 PST 2026; root:xnu-12377.81.4~5/RELEASE_ARM64_T8103
+> Python Version:  3.13.12 | packaged by conda-forge | (main, Feb  5 2026, 06:11:05) [Clang 19.1.7 ]
+
+Package Information
+-------------------
+> langchain_core: 1.4.0
+> langsmith: 0.8.9
+> langchain_protocol: 0.0.16
+
+Optional packages not installed
+-------------------------------
+> deepagents
+> deepagents-cli
+
+Other Dependencies
+------------------
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> orjson: 3.11.9
+> packaging: 26.2
+> pydantic: 2.13.4
+> pyyaml: 6.0.3
+> requests: 2.34.2
+> requests-toolbelt: 1.0.0
+> tenacity: 9.1.4
+> typing-extensions: 4.15.0
+> uuid-utils: 0.16.0
+> websockets: 16.0
+> xxhash: 3.7.0
+> zstandard: 0.25.0
+",bug core external,https://github.com/langchain-ai/langchain/issues/37894
+langchain-ai/langchain,AgentExecutor._execute_model_async uses ainvoke (non-streaming) — on_llm_new_token never fires; LangGraph use_astream=True does not enable token-level streaming,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [x] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+## Bug Description
+
+`AgentExecutor._execute_model_async` calls `llm.ainvoke()` internally,
+which is a non-streaming single-shot call. As a result, the
+`on_llm_new_token` callback never fires during agent execution.
+
+LangGraph's `use_astream=True` only controls graph-node-level streaming,
+not token-by-token model output streaming.
+
+---
+
+## Steps to Reproduce
+
+```python
+from langchain.agents import AgentExecutor, create_react_agent
+from langchain_openai import ChatOpenAI
+from langchain_core.callbacks import BaseCallbackHandler
+
+class TokenPrinter(BaseCallbackHandler):
+    def on_llm_new_token(self, token: str, **kwargs):
+        print(f""TOKEN: {token}"")  # Never fires
+
+llm = ChatOpenAI(model=""gpt-4o"", streaming=True)
+agent = create_react_agent(llm, tools, prompt)
+executor = AgentExecutor(agent=agent, tools=tools, callbacks=[TokenPrinter()])
+
+# on_llm_new_token is never called
+await executor.ainvoke({""input"": ""What is 2 + 2?""})
+```
+
+---
+
+## Expected Behavior
+
+`on_llm_new_token` should fire for each token when `streaming=True`
+is set on the LLM, regardless of whether the agent uses `ainvoke`
+or `astream` internally.
+
+## Actual Behavior
+
+`on_llm_new_token` never fires. The callback receives only
+`on_llm_start` and `on_llm_end`. Tokens are not streamed.
+
+---
+
+## Root Cause (traced in source)
+
+`AgentExecutor._execute_model_async`
+→ calls `self.agent.aplan()`
+→ calls `llm.ainvoke()` (non-streaming, waits for full response)
+→ `on_llm_new_token` is never triggered
+
+For token streaming, `llm.astream()` would need to be called instead.
+
+---
+
+## Environment
+
+- langchain version: x.x.x
+- langchain-openai version: x.x.x
+- langgraph version: x.x.x
+- Python version: 3.x
+- OS: (e.g. macOS 14, Ubuntu 22.04)
+
+---
+
+## Workaround
+
+Using `astream_events(version=""v2"")` works:
+
+```python
+async for event in executor.astream_events(inputs, version=""v2""):
+    if event[""event""] == ""on_chat_model_stream"":
+        print(event[""data""][""chunk""].content, end="""")
+```
+
+But `on_llm_new_token` via callbacks should also work for
+backward compatibility.
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+# pip install langchain langchain-openai
+
+import asyncio
+import os
+from langchain.agents import AgentExecutor, create_react_agent
+from langchain_openai import ChatOpenAI
+from langchain_core.callbacks import BaseCallbackHandler
+from langchain_core.tools import tool
+from langchain_core.prompts import PromptTemplate
+
+# --- Minimal tool ---
+@tool
+def add(a: int, b: int) -> int:
+    """"""Adds two numbers.""""""
+    return a + b
+
+# --- Callback that should receive tokens ---
+class TokenTracker(BaseCallbackHandler):
+    def __init__(self):
+        self.tokens_received = []
+
+    def on_llm_new_token(self, token: str, **kwargs):
+        self.tokens_received.append(token)
+        print(f""TOKEN: {repr(token)}"")  # Should print per token
+
+    def on_llm_end(self, response, **kwargs):
+        print(f""\non_llm_end fired. Total tokens received via callback: {len(self.tokens_received)}"")
+
+# --- Minimal ReAct prompt ---
+prompt = PromptTemplate.from_template(
+    ""Answer the question using the tools available.\n""
+    ""Tools: {tools}\nTool names: {tool_names}\n""
+    ""Question: {input}\n""
+    ""Scratchpad: {agent_scratchpad}""
+)
+
+async def main():
+    llm = ChatOpenAI(
+        model=""gpt-4o"",
+        streaming=True,  # streaming explicitly enabled
+        api_key=os.environ[""OPENAI_API_KEY""],
+    )
+
+    tools = [add]
+    tracker = TokenTracker()
+
+    agent = create_react_agent(llm, tools, prompt)
+    executor = AgentExecutor(
+        agent=agent,
+        tools=tools,
+        callbacks=[tracker],  # callback registered here
+        verbose=False,
+    )
+
+    print(""=== Running ainvoke ==="")
+    result = await executor.ainvoke({""input"": ""What is 3 + 5?""})
+    print(f""Final answer: {result['output']}"")
+
+    print(f""\n=== Result ==="")
+    print(f""on_llm_new_token fired {len(tracker.tokens_received)} time(s)"")
+    print(""EXPECTED: > 0 tokens received"")
+    print(""ACTUAL:     0 tokens received (bug)"")
+
+asyncio.run(main())
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+No exception is raised. The bug is a silent failure.
+
+on_llm_new_token is never called despite streaming=True being set on the LLM.
+on_llm_end fires normally, confirming the callback is registered correctly.
+
+The only observable symptom is that TokenTracker.tokens_received remains
+an empty list [] after the full agent run completes.
+
+--- Relevant internal call chain (traced from source) ---
+
+AgentExecutor.ainvoke()
+  └─ AgentExecutor._aiter_next_step()
+       └─ AgentExecutor._execute_model_async()
+            └─ self.agent.aplan()                  # returns complete output
+                 └─ LLMChain.apredict()
+                      └─ llm.ainvoke()             # ← non-streaming call
+                                                   #   on_llm_new_token never fires
+
+For token streaming, llm.astream() would need to be called here instead.
+streaming=True on the ChatOpenAI instance has no effect inside ainvoke().
+
+--- Versions ---
+langchain:        x.x.x   ← fill in from: pip show langchain
+langchain-openai: x.x.x   ← fill in from: pip show langchain-openai
+python:           3.x.x
+os:               (e.g. macOS 14 / Ubuntu 22.04 / Windows 11)
+```
+
+### Description
+
+When using AgentExecutor with streaming=True set on the LLM and a 
+callback handler that implements on_llm_new_token, the callback never 
+fires during an async agent run.
+
+What I am doing:
+I created a ChatOpenAI instance with streaming=True, attached a 
+BaseCallbackHandler subclass that implements on_llm_new_token to the 
+AgentExecutor, and called executor.ainvoke().
+
+What I expect to happen:
+on_llm_new_token should be called for each token the LLM generates, 
+since streaming=True is explicitly set on the model.
+
+What is currently happening:
+on_llm_new_token is never called. on_llm_start and on_llm_end fire 
+normally, confirming the callback is registered, but zero tokens are 
+ever delivered to the handler.
+
+The root cause is that AgentExecutor._execute_model_async calls 
+llm.ainvoke() internally instead of llm.astream(), so tokens are 
+never yielded regardless of the streaming flag on the model.
+
+LangGraph's use_astream=True does not fix this either — it controls 
+graph-node-level streaming, not token-by-token model output.
+
+### System Info
+
+System Information
+------------------
+> OS:                    Windows
+> OS Version:            10.0.22631
+> Python Version:        3.11.6
+
+Package Information
+-------------------
+> langchain_core: 0.3.29
+> langchain: 0.3.14
+> langchain_community: 0.3.12
+> langsmith: 0.1.77
+> langchain_openai: 0.2.12
+> langchain_text_splitters: 0.3.3
+
+Optional packages not installed
+---------------------------------
+> langgraph",bug langchain external,https://github.com/langchain-ai/langchain/issues/37878
+langchain-ai/langchain,Agent factory _execute_model_async uses ainvoke (non-streaming) and cannot trigger on_llm_new_token callback; LangGraph use_astream=True only controls graph-level streaming not model token-by-token streaming,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [x] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+_No response_
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+In langchain/agents/factory.py _execute_model_async (L1350), LLM calls use await model_.ainvoke(messages) (non-streaming), which never triggers on_llm_new_token.
+LangGraph use_astream=True (L3353) only controls graph-level streaming, not model-level token streaming. The model node still returns full response via ainvoke.
+Fix: Use streaming astream in _execute_model_async to support real-time token streaming and on_llm_new_token.
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+In langchain/agents/factory.py _execute_model_async (L1350), LLM calls use await model_.ainvoke(messages) (non-streaming), which never triggers on_llm_new_token.
+LangGraph use_astream=True (L3353) only controls graph-level streaming, not model-level token streaming. The model node still returns full response via ainvoke.
+Fix: Use streaming astream in _execute_model_async to support real-time token streaming and on_llm_new_token.
+```
+
+### Description
+
+""langchain==1.3.4"",
+""langgraph==1.2.4"",
+
+### System Info
+
+""langchain==1.3.4"",
+""langgraph==1.2.4"",",bug langchain external,https://github.com/langchain-ai/langchain/issues/37869
+langchain-ai/langchain,feat(core): add image field to InputTokenDetails and OutputTokenDetails for image generation models,"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+InputTokenDetails and OutputTokenDetails have an audio field for audio token counts, but no equivalent image field. Image generation models (e.g. Gemini) return
+-  per-modality token breakdowns that include IMAGE modality token counts in candidates_tokens_details, but there is nowhere standard in UsageMetadata to surface them.
+- Without an image key, integrations must drop this information or use non-standard provider-specific keys not understood by LangSmith.
+
+### Use Case
+
+Image generation models produce image output tokens, not text tokens. Without a standard image field in OutputTokenDetails, image token costs are invisible to LangSmith and any tooling reading UsageMetadata. The same applies to image inputs in multimodal models. Tracked in the Gemini integration at langchain-ai/langchain-google#1821.
+
+### Proposed Solution
+
+```python
+class InputTokenDetails(TypedDict, total=False):
+      audio: int
+      cache_creation: int
+      cache_read: int
+      image: int  # new — image input tokens
+
+  class OutputTokenDetails(TypedDict, total=False):
+      audio: int
+      reasoning: int
+      image: int  # new — image output tokens (e.g. image generation models)
+```
+
+### Alternatives Considered
+
+_No response_
+
+### Additional Context
+
+_No response_",core feature request external,https://github.com/langchain-ai/langchain/issues/37849
+langchain-ai/langchain,AzureChatOpenAI._create_chat_result emits PydanticSerializationUnexpectedValue warnings for structured-output responses,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [x] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+Related Issues / PRs
+- https://github.com/langchain-ai/langchain/issues/35538 (original report)
+- https://github.com/langchain-ai/langchain/pull/35543 (fix on BaseChatOpenAI._create_chat_result, which missed the Azure override)
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+import warnings
+from typing import Literal
+
+import openai
+from pydantic import BaseModel, SecretStr
+
+from langchain_openai import AzureChatOpenAI
+
+
+class ModelOutput(BaseModel):
+    output: str
+
+
+class MockParsedMessage(openai.BaseModel):
+    role: Literal[""assistant""] = ""assistant""
+    content: str = '{""output"": ""Paris""}'
+    parsed: None = None
+    refusal: str | None = None
+
+
+class MockChoice(openai.BaseModel):
+    index: int = 0
+    finish_reason: Literal[""stop""] = ""stop""
+    message: MockParsedMessage
+
+
+class MockChatCompletion(openai.BaseModel):
+    id: str = ""chatcmpl-1""
+    object: str = ""chat.completion""
+    created: int = 0
+    model: str = ""gpt-4o-mini""
+    choices: list[MockChoice]
+    usage: dict[str, int] | None = None
+
+
+parsed_response = ModelOutput(output=""Paris"")
+response = MockChatCompletion.model_construct(
+    choices=[
+        MockChoice.model_construct(
+            message=MockParsedMessage.model_construct(parsed=parsed_response)
+        )
+    ],
+    usage={""prompt_tokens"": 1, ""completion_tokens"": 1, ""total_tokens"": 2},
+)
+
+llm = AzureChatOpenAI(
+    azure_deployment=""gpt-4o-mini"",
+    api_version=""2024-10-01-preview"",
+    azure_endpoint=""https://example.openai.azure.com"",
+    api_key=SecretStr(""test""),
+)
+
+with warnings.catch_warnings(record=True) as caught:
+    warnings.simplefilter(""always"")
+    llm._create_chat_result(response)
+
+print(f""# warnings: {len(caught)}"")
+for w in caught:
+    print(w.category.__name__, str(w.message))
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+# warnings: 1
+UserWarning Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `none` - serialized value may not be as expected [field_name='parsed', input_value=ModelOutput(output='Paris'), input_type=ModelOutput])
+```
+
+### Description
+
+https://github.com/langchain-ai/langchain/pull/35543 added exclude={""choices"": {""__all__"": {""message"": {""parsed""}}}} to BaseChatOpenAI._create_chat_result's response.model_dump() call to suppress PydanticSerializationUnexpectedValue warnings on structured-output responses.
+
+AzureChatOpenAI._create_chat_result overrides the base method (to inspect Azure-specific content-filter metadata) and runs a second response.model_dump() on the same response without the same exclusion. Every Azure with_structured_output call therefore still emits the warning on this second dump. In our deployment these warnings show up on every chat-completion call that uses structured output and get ingested by log collectors at ERROR severity from stderr, drowning out real errors.
+
+The fix is to mirror the same exclude into the Azure override..
+
+### System Info
+
+
+System Information
+------------------
+> OS:  Darwin
+> OS Version:  Darwin Kernel Version 25.5.0: Mon Apr 27 20:39:42 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T6031
+> Python Version:  3.12.10 (main, May 22 2025, 01:38:44) [Clang 20.1.4 ]
+
+Package Information
+-------------------
+> langchain_core: 1.4.0
+> langchain: 1.3.1
+> langsmith: 0.8.5
+> langchain_openai: 1.2.2
+> langchain_protocol: 0.0.14
+> langchain_tests: 1.1.9
+> langgraph_sdk: 0.3.3
+
+Optional packages not installed
+-------------------------------
+> deepagents
+> deepagents-cli
+
+Other Dependencies
+------------------
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> langgraph: 1.2.0
+> numpy: 2.3.4
+> openai: 2.32.0
+> orjson: 3.11.6
+> packaging: 25.0
+> pydantic: 2.12.2
+> pytest: 9.0.3
+> pytest-asyncio: 1.3.0
+> pytest-benchmark: 5.0.1
+> pytest-codspeed: 4.1.1
+> pytest-recording: 0.13.4
+> pytest-socket: 0.7.0
+> pyyaml: 6.0.3
+> requests: 2.33.0
+> requests-toolbelt: 1.0.0
+> rich: 14.2.0
+> syrupy: 5.1.0
+> tenacity: 9.1.2
+> tiktoken: 0.12.0
+> typing-extensions: 4.15.0
+> uuid-utils: 0.12.0
+> vcrpy: 8.1.1
+> wrapt: 1.17.3
+> xxhash: 3.6.0
+> zstandard: 0.25.0",bug openai external,https://github.com/langchain-ai/langchain/issues/37844
+langchain-ai/langchain,Remove IPEX backend of huggingface integration,"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [x] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+W/ years of upstreaming efforts, PyTorch supports Intel GPU as built-in device from 2.5, and all `IPEX` optimizations were upstreamed or are upstreaming to PyTorch. Based on this, intel deprecated `IPEX`. 
+
+As a result of it, we don't need maintain `ipex` backend in Hugging Face `optimum`, the Intel CPU and GPU support can naturally go through Hugging Face `transformers`, `sentence-transformers` packages. And Hugging Face `optimum` already deprecated `ipex` backend since version 2.0 (https://github.com/huggingface/optimum-intel/pull/1687).
+
+Based all above, we want to deprecate `IPEX` from langchain Hugging Face integration, to make things up-to-date and clean for community. 
+
+### Use Case
+
+N/A
+
+### Proposed Solution
+
+_No response_
+
+### Alternatives Considered
+
+_No response_
+
+### Additional Context
+
+_No response_",feature request huggingface external,https://github.com/langchain-ai/langchain/issues/37840
+langchain-ai/langchain,ShellSession._collect_output times out when command output lacks a trailing newline,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [x] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+ShellSession._collect_output uses readline() to read stdout and detects completion with data.startswith(marker). When a command's last output line has no trailing \n (e.g. head, cat, grep on a minified single-line JSON file), readline() blocks until the next newline arrives — which only comes from the marker's own printf call. The result is that both are returned in a single readline() read:
+
+`{""key"":""value""}__LC_SHELL_DONE__abc123 0\n`
+
+The startswith(marker) check fails, the loop receives nothing further, and the command times out after the full command_timeout (default 30 s).
+
+Expected behaviour
+
+The command completes immediately and returns `{""k"":""v""}`.
+
+Actual behaviour
+
+Error: Command timed out after 30.0 seconds.
+
+Proposed fix
+
+Change line in _collect_output from:
+
+```
+if source == ""stdout"" and data.startswith(marker):
+    _, _, status = data.partition("" "")
+    exit_code = self._safe_int(status.strip())
+```
+
+to:
+
+```
+if source == ""stdout"" and marker in data:
+    marker_idx = data.index(marker)
+    if marker_idx > 0:
+        collected.append(data[:marker_idx])
+    _, _, status = data[marker_idx + len(marker):].partition("" "")
+    exit_code = self._safe_int(status.strip())
+```
+
+Version
+
+langchain==1.2.10 (also confirmed identical in all previous versions)
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+import time
+from pathlib import Path
+
+from langchain.agents.middleware._execution import HostExecutionPolicy
+from langchain.agents.middleware.shell_tool import ShellSession
+
+WORKSPACE = Path(__file__).parent / ""scratch"" / ""reprod""
+WORKSPACE.mkdir(parents=True, exist_ok=True)
+
+WITH_NEWLINE = WORKSPACE / ""with_newline.json""
+NO_NEWLINE = WORKSPACE / ""no_newline.json""
+
+WITH_NEWLINE.write_text('{""k"":""v""}\n')   # normal file
+NO_NEWLINE.write_bytes(b'{""k"":""v""}')     # no trailing newline — triggers the bug
+
+policy = HostExecutionPolicy(command_timeout=5)
+session = ShellSession(
+    workspace=WORKSPACE,
+    policy=policy,
+    command=(""/bin/bash"",),
+    environment={},
+)
+session.start()
+
+for label, path in [(""with newline   "", WITH_NEWLINE), (""without newline"", NO_NEWLINE)]:
+    t0 = time.monotonic()
+    result = session.execute(f""head -n 1 {path}"", timeout=policy.command_timeout)
+    elapsed = time.monotonic() - t0
+
+    status = ""TIMEOUT"" if result.timed_out else ""OK""
+    print(f""[{status}] {label}  output={result.output!r}  exit={result.exit_code}  {elapsed:.2f}s"")
+
+session.stop(policy.termination_timeout)
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+Command timed out after 5.00 seconds; restarting shell session.
+[TIMEOUT] without newline  output=''  exit=None  5.00s
+```
+
+### Description
+
+ShellSession.execute() times out when a command's last line of output has no trailing newline (e.g. head -n 1 on a file without a final \n).
+
+Root cause: _collect_output uses readline() to read stdout. When output ends without \n, the OS buffers that line until the next write — which is the done-marker printf. readline() returns them merged into a single string (e.g. '{""k"":""v""}DONE_<uuid> '). The check data.startswith(marker) then fails because the marker is not at position 0, so the loop keeps blocking until the full command_timeout expires.
+
+Expected: The command returns immediately with the correct output and exit code regardless of whether the last output byte is \n.
+
+Actual: The command times out after command_timeout seconds; result.timed_out is True, result.output is '', and result.exit_code is None.
+
+### System Info
+
+>>> sys_info.print_sys_info()
+
+System Information
+------------------
+> OS:  Linux
+> OS Version:  #1 SMP Wed May 20 06:30:26 UTC 2026
+> Python Version:  3.11.12 (main, Apr  9 2025, 04:04:00) [Clang 20.1.0 ]
+
+Package Information
+-------------------
+> langchain_core: 1.2.16
+> langchain: 1.2.10
+> langsmith: 0.7.35
+> langchain_mcp_adapters: 0.2.2
+> langchain_openai: 1.1.10
+> langgraph_sdk: 0.3.13
+
+Optional packages not installed
+-------------------------------
+> deepagents
+> deepagents-cli
+
+Other Dependencies
+------------------
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> langgraph: 1.0.10
+> mcp: 1.27.0
+> openai: 2.32.0
+> opentelemetry-api: 1.41.0
+> opentelemetry-exporter-otlp-proto-http: 1.41.0
+> opentelemetry-sdk: 1.41.0
+> orjson: 3.11.8
+> packaging: 25.0
+> pydantic: 2.13.3
+> pytest: 9.0.3
+> pyyaml: 6.0.3
+> requests: 2.33.1
+> requests-toolbelt: 1.0.0
+> rich: 15.0.0
+> tenacity: 9.1.4
+> tiktoken: 0.12.0
+> typing-extensions: 4.15.0
+> uuid-utils: 0.14.1
+> wrapt: 1.17.3
+> xxhash: 3.6.0
+> zstandard: 0.25.0
+>>> ",bug core langchain external,https://github.com/langchain-ai/langchain/issues/37837
+langchain-ai/langchain,"Responses API: parsed_arguments leaks from ParsedResponseFunctionToolCall into AIMessage content, breaking the next turn","### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [x] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+_No response_
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+from langchain_openai import ChatOpenAI
+  from langchain_core.tools import tool
+  from pydantic import BaseModel
+
+  class Answer(BaseModel):
+      response: str
+
+  @tool
+  def now() -> str:
+      """"""Return current time.""""""
+      return ""12:00""
+
+  llm = ChatOpenAI(model=""gpt-4o-mini"", output_version=""responses/v1"")
+  runnable = llm.with_structured_output(
+      Answer, method=""json_schema"", strict=True, include_raw=True, tools=[now]
+  )
+  
+  # Turn 1: succeeds, AI requests the tool.
+  m1 = runnable.invoke(""What time is it?"")
+
+  # Turn 2: re-sends the AIMessage; fails with parsed_arguments BadRequestError.
+  runnable.invoke([
+      (""user"", ""What time is it?""),
+      m1[""raw""],
+      (""tool"", ""12:00""),
+  ])
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+
+```
+
+### Description
+
+## Description
+
+  When `ChatOpenAI` is used against the Responses API with `output_version=""responses/v1""` together with structured output and tool bindings (`with_structured_output(method=""json_schema"", strict=True, include_raw=True,
+  tools=...)`), the second turn of a ReAct-style loop fails with:
+
+  ```
+  openai.BadRequestError: Error code: 400 - {
+    'error': {
+      'message': ""Unknown parameter: 'input[N].parsed_arguments'."",
+      'type': 'invalid_request_error',
+      'param': 'input[N].parsed_arguments',
+      'code': 'unknown_parameter'
+    }
+  }
+  ```
+
+  The first turn succeeds; the second turn fails because the AIMessage carrying the function call cannot be round-tripped back into the request payload.
+
+ ## Root cause
+  
+  `_construct_lc_result_from_responses_api` in `libs/partners/openai/langchain_openai/chat_models/base.py` builds `AIMessage.content` blocks via `output.model_dump(exclude_none=True, mode=""json"")` at three sites (around
+   lines 4661, 4686, 4708).
+
+  When the request used `text_format` (structured output via `responses.parse()`), the SDK returns `ParsedResponseFunctionToolCall` instances whose `parsed_arguments` field carries the already-parsed Python object. The
+  SDK marks this field as client-side-only:
+
+  ```python
+  # openai/types/responses/parsed_response.py
+  class ParsedResponseFunctionToolCall(ResponseFunctionToolCall):
+      parsed_arguments: object = None
+      __api_exclude__ = {""parsed_arguments""}
+  ```
+
+  The OpenAI SDK honors `__api_exclude__` itself when serializing models for transport (`openai/_utils/_transform.py:221`). `langchain-openai`'s plain `model_dump(exclude_none=True, mode=""json"")` does not, so
+  `parsed_arguments` lands inside the AIMessage content block. On the next turn, `_construct_responses_api_input` routes the block through `_pop_index_and_sub_index` (which only strips `index`) and re-sends it as an
+  `input` item. OpenAI rejects.
+
+  ## Versions affected
+  
+  Reproduced on `langchain-openai` 1.1.12 and confirmed by source inspection on 1.2.2 (current release) and `master`. The same code path is present unchanged. Combination required: `output_version=""responses/v1""` plus
+  structured output with tool bindings — narrow enough that most users haven't hit it yet, but it bites any project that uses `with_structured_output(method=""json_schema"", strict=True, include_raw=True, tools=...)`
+  under v1.
+
+  ## Suggested fix
+  
+  Mirror the OpenAI SDK convention with a small helper next to `_pop_index_and_sub_index`:
+  
+  ```python
+  def _dump_for_content_block(obj: BaseModel) -> dict:
+      return obj.model_dump(
+          exclude_none=True,
+          mode=""json"",
+          exclude=getattr(obj, ""__api_exclude__"", None),
+      )
+  ```
+
+  …and use it at the three Responses-API content-block dump sites. PR drafted at #37833  (currently closed by automation pending this issue's approval).
+  
+  ## Related
+
+  - A misfiled prior report against the OpenAI SDK repo: openai/openai-python#2720
+  - Same-shape fix on the Chat Completions side: #35543 (*avoid PydanticSerializationUnexpectedValue for structured output*)
+
+### System Info
+
+System Information
+------------------
+> OS:  Linux
+> OS Version:  #29~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Mon May 11 10:30:58 UTC 2
+> Python Version:  3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0]
+
+Package Information
+-------------------
+> langchain_core: 1.4.0
+> langchain: 1.3.2
+> langsmith: 0.8.5
+> langchain_openai: 1.2.2
+> langchain_protocol: 0.0.14
+> langchain_tests: 1.1.9
+> langgraph_sdk: 0.3.3
+
+Optional packages not installed
+-------------------------------
+> deepagents
+> deepagents-cli
+
+Other Dependencies
+------------------
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> langgraph: 1.2.2
+> numpy: 2.3.4
+> openai: 2.32.0
+> orjson: 3.11.6
+> packaging: 25.0
+> pydantic: 2.12.2
+> pytest: 9.0.3
+> pytest-asyncio: 1.3.0
+> pytest-benchmark: 5.0.1
+> pytest-codspeed: 4.1.1
+> pytest-recording: 0.13.4
+> pytest-socket: 0.7.0
+> pyyaml: 6.0.3
+> requests: 2.33.0
+> requests-toolbelt: 1.0.0
+> rich: 14.2.0
+> syrupy: 5.1.0
+> tenacity: 9.1.2
+> tiktoken: 0.12.0
+> typing-extensions: 4.15.0
+> uuid-utils: 0.12.0
+> vcrpy: 8.1.1
+> wrapt: 1.17.3
+> xxhash: 3.6.0
+> zstandard: 0.25.0",bug openai external,https://github.com/langchain-ai/langchain/issues/37836
+langchain-ai/langchain,Importing langchain.agents breaks BaseLLM class construction on Pydantic main,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+#36896 (auto-closed by triage bot for not using the issue template; refiling under the bug-report template). Also #34537 (a closed-without-merging PR that proposed exactly the fix needed).
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+import langchain.agents
+from langchain_core.language_models.llms import BaseLLM
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+Traceback (most recent call last):
+  File ""/Users/alex/Library/Application Support/JetBrains/PyCharm2026.1/scratches/scratch_2970.py"", line 2, in <module>
+    from langchain_core.language_models.llms import BaseLLM
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/langchain_core/language_models/llms.py"", line 293, in <module>
+    class BaseLLM(BaseLanguageModel[str], ABC):
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/pydantic/_internal/_model_construction.py"", line 249, in __new__
+    set_model_fields(cls, config_wrapper=config_wrapper, ns_resolver=ns_resolver)
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/pydantic/_internal/_model_construction.py"", line 585, in set_model_fields
+    fields, pydantic_extra_info, class_vars = collect_model_fields(
+                                              ^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/pydantic/_internal/_fields.py"", line 264, in collect_model_fields
+    type_hints = _typing_extra.get_model_type_hints(cls, ns_resolver=ns_resolver)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/pydantic/_internal/_typing_extra.py"", line 354, in get_model_type_hints
+    hints[name] = try_eval_type(value, globalns, localns)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/pydantic/_internal/_typing_extra.py"", line 409, in try_eval_type
+    return eval_type(value, globalns, localns), True
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/pydantic/_internal/_typing_extra.py"", line 433, in eval_type
+    return _eval_type(value, globalns, localns, type_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/alex/work/logfire/.venv/lib/python3.12/site-packages/pydantic/_internal/_typing_extra.py"", line 510, in _eval_type
+    return typing._eval_type(  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/alex/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/typing.py"", line 415, in _eval_type
+    return t._evaluate(globalns, localns, type_params, recursive_guard=recursive_guard)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/alex/.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/typing.py"", line 947, in _evaluate
+    eval(self.__forward_code__, globalns, localns),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""<string>"", line 1, in <module>
+TypeError: 'function' object is not subscriptable
+Unable to evaluate type annotation 'dict[str, Any] | None'.
+```
+
+### Description
+
+## Problem
+
+After importing `langchain.agents`, subsequent construction of `BaseLLM` (e.g. via `from langchain_core.language_models import BaseLLM`) fails with `TypeError: 'function' object is not subscriptable` when using the current Pydantic `main` branch / `2.14.0a1` alpha.
+
+## Root cause (langchain side)
+
+In `libs/core/langchain_core/utils/pydantic.py`, `_create_subset_model_v2` writes `__annotations__` directly on a model class (verified on master `bc5f1517cf`, line 272):
+
+https://github.com/langchain-ai/langchain/blob/bc5f1517cf7ac27addd4286e388228b8172b93b9/libs/core/langchain_core/utils/pydantic.py#L272
+
+```python
+rtn.__annotations__ = dict(selected_annotations)
+```
+
+This breaks the invariant (in Python >= 3.10) that `getattr(cls, '__annotations__', {})` and `cls.__dict__.get('__annotations__', {})` should return the same thing. Pydantic `main` switched from the latter to the former in its `safe_get_annotations` helper ([pydantic PR #13070](https://github.com/pydantic/pydantic/pull/13070)), which exposes the langchain bug.
+
+See Pydantic maintainer's diagnosis: https://github.com/pydantic/pydantic/issues/13097#issuecomment-4282311834
+
+## Impact
+
+Any code that imports `langchain.agents` and then constructs `BaseLLM` (or any model inheriting from a class with a `dict[...]` string annotation) will fail once pydantic 2.14 ships. Caught by logfire's weekly CI against pydantic main:
+- Original: https://github.com/pydantic/logfire/actions/runs/24666273628/job/72124642387
+- Recent: https://github.com/pydantic/logfire/actions/runs/26759594603
+
+## Suggested fix
+
+Avoid mutating `__annotations__` directly in `_create_subset_model_v2`. The existing TODO comment in the code already anticipates this: ""Determine if there is a more 'pydantic' way to preserve annotations."" Using `pydantic.create_model` with fields passed normally (so pydantic sets up `__annotations__` itself), or `typing.get_type_hints(..., include_extras=True)` as proposed in the closed PR #34537, would avoid the invariant violation.
+
+### System Info
+
+System Information
+------------------
+> OS:  Darwin
+> OS Version:  Darwin Kernel Version 24.6.0: Mon Jul 14 11:30:55 PDT 2025; root:xnu-11417.140.69~1/RELEASE_ARM64_T6031
+> Python Version:  3.12.11 (main, Aug  8 2025, 16:50:44) [Clang 20.1.4 ]
+
+Package Information
+-------------------
+> langchain_core: 1.4.0
+> langchain: 1.3.2
+> langsmith: 0.8.5
+> langchain_openai: 1.2.2
+> langchain_protocol: 0.0.15
+> langgraph_sdk: 0.3.15
+
+Optional packages not installed
+-------------------------------
+> deepagents
+> deepagents-cli
+
+Other Dependencies
+------------------
+> claude-agent-sdk: 0.2.87
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> langgraph: 1.2.2
+> openai: 2.38.0
+> openai-agents: 0.17.3
+> opentelemetry-api: 1.42.1
+> opentelemetry-exporter-otlp-proto-http: 1.42.1
+> opentelemetry-sdk: 1.42.1
+> orjson: 3.11.9
+> packaging: 26.2
+> pydantic: 2.14.0a1
+> pytest: 9.0.3
+> pyyaml: 6.0.3
+> requests: 2.34.2
+> requests-toolbelt: 1.0.0
+> rich: 15.0.0
+> tenacity: 9.1.4
+> tiktoken: 0.13.0
+> typing-extensions: 4.15.0
+> uuid-utils: 0.16.0
+> vcrpy: 8.1.1
+> websockets: 16.0
+> wrapt: 2.2.1
+> xxhash: 3.7.0
+> zstandard: 0.25.0
+",bug core external,https://github.com/langchain-ai/langchain/issues/37835
+langchain-ai/langchain,HTMLSemanticPreservingSplitter drops video/audio URLs from nested source tags,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [x] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+None found.
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+from langchain_text_splitters.html import HTMLSemanticPreservingSplitter
+
+html = """"""
+<h1>Media</h1>
+<p>Watch:</p>
+<video controls>
+    <source src=""https://example.com/video.mp4"" type=""video/mp4"" />
+</video>
+<p>Listen:</p>
+<audio controls>
+    <source src=""https://example.com/audio.mp3"" type=""audio/mpeg"" />
+</audio>
+""""""
+
+splitter = HTMLSemanticPreservingSplitter(
+    headers_to_split_on=[(""h1"", ""Header 1"")],
+    preserve_videos=True,
+    preserve_audio=True,
+)
+
+print(splitter.split_text(html)[0].page_content)
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+No exception is raised. The output contains empty Markdown media links:
+
+Watch: ![video:]() Listen: ![audio:]()
+```
+
+### Description
+
+`HTMLSemanticPreservingSplitter` preserves video and audio tags by converting them to Markdown-like media links when `preserve_videos=True` or `preserve_audio=True`.
+
+It currently reads only the `src` attribute from the `<video>` / `<audio>` tag itself. A common HTML pattern stores the media URL in a nested `<source src=""..."">` tag instead. In that case, the splitter preserves the media placeholder but drops the URL and emits empty links.
+
+Expected behavior: if the media tag has no direct `src`, the splitter should use the first nested `<source src=""..."">` URL for video/audio preservation.
+
+### System Info
+
+Reproduced against the current langchain master branch in langchain-text-splitters.
+Relevant component: HTMLSemanticPreservingSplitter in libs/text-splitters/langchain_text_splitters/html.py.",bug text-splitters external,https://github.com/langchain-ai/langchain/issues/37826
+langchain-ai/langchain,ClearToolUsesEdit trigger semantics are degenerate with a persistent checkpointer — eviction re-fires every turn,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [x] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+_No response_
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+""""""
+Repro: ClearToolUsesEdit fires every turn against a growing message list,
+because edits run on a deepcopy and the `cleared` flag never persists.
+
+Run:
+    pip install ""langchain==1.3.1"" ""langchain-core==1.4.0""
+    python repro.py
+""""""
+from copy import deepcopy
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
+from langchain_core.messages.utils import count_tokens_approximately
+from langchain.agents.middleware.context_editing import ClearToolUsesEdit
+
+TRIGGER = 10_000
+KEEP = 5
+TOOL_RESULT_CHARS = 4_000   # ~1k tokens each
+
+edit = ClearToolUsesEdit(
+    trigger=TRIGGER, keep=KEEP, placeholder=""[Result cleared — re-run if needed]""
+)
+
+# Simulate the persistent checkpoint: this list grows monotonically across turns,
+# exactly like state[""messages""] under a real checkpointer (MemorySaver etc.).
+state = [HumanMessage(content=""start"")]
+
+def add_turn(state, i):
+    """"""Each turn appends one AIMessage + one ToolMessage to state.""""""
+    tc_id = f""call_{i}""
+    state.append(AIMessage(content="""", tool_calls=[{""id"": tc_id, ""name"": ""t"", ""args"": {}}]))
+    state.append(ToolMessage(content=""x"" * TOOL_RESULT_CHARS, tool_call_id=tc_id))
+
+def simulate_middleware_call(state):
+    """"""
+    Mirror ContextEditingMiddleware.wrap_model_call's relevant slice:
+        edited = deepcopy(list(request.messages))
+        edit.apply(edited, count_tokens=count_tokens)
+    """"""
+    edited = deepcopy(state)
+    edit.apply(edited, count_tokens=count_tokens_approximately)
+    return edited
+
+print(f""trigger={TRIGGER} keep={KEEP}\n"")
+print(f""{'turn':>4} {'tool_msgs':>10} {'raw_tok':>8} {'edited_tok':>11} ""
+      f""{'cleared':>8} {'fired?':>7}"")
+
+prev_cleared = 0
+for turn in range(1, 26):
+    add_turn(state, turn)
+    edited = simulate_middleware_call(state)
+    raw_tok = count_tokens_approximately(state)
+    ed_tok = count_tokens_approximately(edited)
+    cleared = sum(
+        1 for m in edited
+        if isinstance(m, ToolMessage) and m.content == edit.placeholder
+    )
+    fired = ""yes"" if cleared > prev_cleared else ""no""
+    print(f""{turn:>4} {sum(isinstance(m, ToolMessage) for m in state):>10} ""
+          f""{raw_tok:>8} {ed_tok:>11} {cleared:>8} {fired:>7}"")
+    prev_cleared = cleared
+
+# Demonstrate the persistence bug: the original `state` list — the analog of
+# checkpointed messages — was never mutated. Every ToolMessage in it still
+# carries its full content, no `cleared` flag.
+print(""\nAfter 25 turns, checkpoint-side ToolMessages with real content:"",
+      sum(
+          1 for m in state
+          if isinstance(m, ToolMessage)
+          and not m.response_metadata.get(""context_editing"", {}).get(""cleared"")
+      ),
+      ""/"", sum(isinstance(m, ToolMessage) for m in state))
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+
+```
+
+### Description
+
+`ClearToolUsesEdit.apply()` (`libs/langchain/langchain/agents/middleware/context_editing.py`) checks its trigger as:
+
+```python
+def apply(self, messages, *, count_tokens):
+    tokens = count_tokens(messages)
+    if tokens <= self.trigger:
+        return
+    candidates = [(idx, msg) for idx, msg in enumerate(messages)
+                  if isinstance(msg, ToolMessage)]
+    if self.keep >= len(candidates):
+        candidates = []
+    elif self.keep:
+        candidates = candidates[: -self.keep]
+    for idx, tool_message in candidates:
+        if tool_message.response_metadata.get(""context_editing"", {}).get(""cleared""):
+            continue
+        ...
+        messages[idx] = tool_message.model_copy(update={
+            ""content"": self.placeholder,
+            ""response_metadata"": {
+                **tool_message.response_metadata,
+                ""context_editing"": {""cleared"": True, ""strategy"": ""clear_tool_uses""},
+            },
+        })
+```
+
+`ContextEditingMiddleware.wrap_model_call` runs `apply` against `deepcopy(list(request.messages))` and ships the edited copy to the next handler. The mutation never escapes the deepcopy, so it never reaches the checkpointer.
+
+When `create_agent` is wired with a `checkpointer` (the documented and default agent topology), this produces a degenerate trigger:
+
+1. Each turn loads the **full, never-cleared** message list from the checkpoint into `request.messages`.
+2. `count_tokens(messages)` always sees the raw, monotonically growing state.
+3. Once the raw state crosses `trigger` once, `tokens <= self.trigger` is **false forever**, so the edit body runs on every subsequent turn for the rest of the session.
+4. The `response_metadata.context_editing.cleared` flag set in `apply()` — and the explicit `if … cleared: continue` skip earlier in the same loop — were clearly designed to make subsequent passes idempotent, but because the flag lives only on the deepcopy it is discarded after each call and never observed by the next pass.
+
+The design intent (idempotent eviction that fires once and stays under budget) is encoded in the source but not realized at runtime, because the surrounding middleware does not persist the edit.
+
+### Suggested fixes
+
+Two ways to restore the intended ceiling semantics, in increasing scope:
+
+1. **Trigger against the post-edit effective count, not the pre-edit raw count.** Always compute the edit (cheap — O(N) `ToolMessage` scan), then evaluate `if count_tokens(edited) <= self.trigger`. Trigger then means ""did the edit fit the budget?"" — an actionable signal that can drive escalation (smaller `keep`, fall through to summarization) instead of a useless yes-vote. The edit still runs per turn (required, since the raw state never shrinks), but the trigger becomes diagnostic rather than gating, and the keep window stops sliding on every call.
+
+2. **Persist the edit.** Return a state update from a paired `after_model` hook (`{""messages"": [RemoveMessage(id=…), <cleared ToolMessage>]}`) so the checkpointer stores the placeholder. Then the existing `cleared` flag check does its job — subsequent passes skip already-cleared messages, raw and effective state converge, and the trigger fires only when *new* tool content crosses the threshold. Matches the design encoded in the source.
+
+Both fixes are compatible. (2) is the design-consistent one. (1) is a smaller change that at least makes the trigger semantically meaningful in the presence of a checkpointer.
+
+Happy to take a PR (either path, or both layered) once this is triaged and you have an opinion on which direction matches the middleware's intended contract.
+
+### System Info
+
+langchain==1.3.1
+langchain-core==1.4.0",bug langchain external,https://github.com/langchain-ai/langchain/issues/37815
+langchain-ai/langchain,test(ollama): add missing standard unit tests for ChatOllama,"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [x] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+The langchain-ollama partner package is missing test_standard.py in the unit_tests folder. All other partner packages have this file. 
+The integration_tests folder already has test_chat_models_standard.py but unit_tests has no standard tests at all.
+
+### Use Case
+
+Consistent standard test coverage across all partner packages.
+Gap identified by comparing unit_tests folders across partners.
+
+### Proposed Solution
+
+Add tests/unit_tests/test_standard.py inheriting from ChatModelUnitTests 
+for ChatOllama, consistent with other partner packages.
+
+### Alternatives Considered
+
+_No response_
+
+### Additional Context
+
+_No response_",feature request ollama external,https://github.com/langchain-ai/langchain/issues/37786
+langchain-ai/langchain,test(huggingface): add missing standard unit tests for ChatHuggingFace,"### Submission checklist
+
+- [x] This is a feature request, not a bug report or usage question.
+- [x] I added a clear and descriptive title that summarizes the feature request.
+- [x] I used the GitHub search to find a similar feature request and didn't find it.
+- [x] I checked the LangChain documentation and API reference to see if this feature already exists.
+- [x] This is not related to the langchain-community package.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [x] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Feature Description
+
+The langchain-huggingface partner package is missing test_standard.py 
+in the unit_tests folder. All other partner packages (groq, mistral, 
+openai, anthropic) have this file. The integration_tests folder already 
+has test_standard.py but unit_tests does not, creating inconsistent 
+test coverage.
+
+### Use Case
+
+Consistent standard test coverage across all partner packages. 
+This is a gap identified by comparing unit_tests folders across partners.
+
+### Proposed Solution
+
+Add tests/unit_tests/test_standard.py inheriting from ChatModelUnitTests 
+for ChatHuggingFace, matching the pattern used in groq, mistral, openai, 
+and anthropic partner packages.
+
+### Alternatives Considered
+
+_No response_
+
+### Additional Context
+
+_No response_",feature request huggingface external,https://github.com/langchain-ai/langchain/issues/37785
+langchain-ai/langchain,`create_agent` should support bounded forced retry after tool invocation validation errors,"### Privileged issue
+
+- [x] I am a LangChain maintainer, or was asked directly by a LangChain maintainer to create an issue here.
+
+### Issue Content
+
+Deep Agents issue langchain-ai/deepagents#947 reports a failure mode where a model emits a malformed client-side tool call, `ToolNode` correctly converts the resulting Pydantic validation failure into an error `ToolMessage`, but the next model turn is allowed to answer in plain text instead of being forced to retry the corrected tool call.
+
+Example failures from the downstream report:
+
+- `task` called without required `subagent_type`
+- filesystem tools called with `path` instead of schema field `file_path`
+
+Current flow:
+
+1. The model emits a tool call with invalid args.
+2. `ToolNode._execute_tool_sync` / `_execute_tool_async` catches `ValidationError` and wraps it in `ToolInvocationError`.
+3. The default tool error handler converts that into a `ToolMessage(status=""error"")` with text like `Please fix the error and try again.`
+4. The agent loop sends that observation back to the model.
+5. The model may respond with plain text containing corrected JSON rather than making the corrected tool call.
+6. Because the response has no tool calls, it is treated as the final answer and leaks incorrect implementation details to the user.
+
+This is not about failing to detect validation errors — `ToolInvocationError` already provides the right retryable signal. The missing behavior is an agent-loop policy for retryable tool invocation/schema failures.
+
+Potential design:
+
+- Preserve or expose structured information that a prior tool error was a `ToolInvocationError` wrapping a Pydantic validation failure, rather than requiring consumers to parse `ToolMessage.content`.
+- Add an opt-in or default bounded retry path in `create_agent` that, after a retryable tool invocation validation failure, forces the next model call to use the same tool via `ModelRequest.tool_choice` / `bind_tools(..., tool_choice=...)`.
+- Track a retry budget to avoid loops.
+- Scope this to schema/invocation validation failures, not arbitrary runtime tool failures where a natural-language response may be appropriate.
+- Account for provider differences in forcing a specific tool.
+
+Related but not blocking:
+
+- langchain-ai/langgraph#7138 proposes surfacing model output metadata in tool error messages. That may help some self-correction cases, but this issue is about runtime/agent-loop enforcement after a known retryable validation error.
+- langchain-ai/deepagents#947 is the downstream report that motivated this.
+
+### Package (Required)
+
+- [x] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [ ] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+",bug langchain internal,https://github.com/langchain-ai/langchain/issues/37778
+langchain-ai/langchain,langchain-openrouter: `rs_*` reasoning IDs cause 404 on `/responses` replay across upstreams,"- [x] I am a LangChain maintainer, or was asked directly by a LangChain maintainer to create an issue here.
+
+### Issue Content
+
+Filed from `langchain-ai/deepagents#3174` (closing that as upstream — this is the canonical tracker).
+
+`ChatOpenRouter` forwards `reasoning_content` / `reasoning_details` from assistant `additional_kwargs` on subsequent turns. Those payloads include opaque `rs_*` reasoning item IDs. OpenRouter's `/responses` beta does not propagate `store=true` / `previous_response_id` across upstreams, so replayed `rs_*` IDs 404 regardless of which upstream OpenRouter selects.
+
+**Symptoms users hit:**
+
+```
+Provider returned error 404
+{
+  ""error"": {
+    ""message"": ""Item with id 'rs_053a05e24b0da75e0169fa358ea9fc81908b18aff8157798c1' not found. Items are not persisted when `store` is set to false. Try again with `store` set to true, or remove this item from your input."",
+    ""type"": ""invalid_request_error"",
+    ""param"": ""input""
+  }
+}
+provider_name: OpenAI
+is_byok: false
+```
+
+The deepagents-side mitigation in `langchain-ai/deepagents#3157` set `openrouter_provider={""ignore"": [""azure""]}` on the assumption that Azure's stateless `/responses` was the offender. Reproduction with that mitigation applied (`deepagents 0.5.7`, `langchain-openrouter 0.2.3`) shows the same 404 from OpenAI direct — confirming the root cause is OpenRouter's `/responses` plumbing, not any single upstream.
+
+### Options
+
+1. **Strip `rs_*` reasoning item IDs from outbound messages in `langchain-openrouter`.** Preserve textual reasoning content, drop opaque IDs that the upstream can't resolve. Smallest blast radius; safe for non-OpenRouter callers because the change is package-local.
+2. **Force chat-completions semantics for OpenRouter requests** so the `/responses` replay path is never taken. Bigger behavior change but sidesteps the problem entirely.
+3. Pure docs: confirm with OpenRouter whether state propagation has shipped, and document the constraint. Not a fix.
+
+Option 1 looks like the right starting point. Happy to send a PR if a maintainer wants to weigh in on the approach first.
+
+### Cross-refs
+
+- `langchain-ai/deepagents#3157` — Azure-specific workaround that masked the broader bug
+- `langchain-ai/deepagents#3174` — original tracker, closed pointing here
+
+### Package (Required)
+
+- [x] langchain-openrouter",internal openrouter,https://github.com/langchain-ai/langchain/issues/37777
+langchain-ai/langchain,VideoContentBlock  ValueError: Block of type video is not supported,"### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [x] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+VideoContentBlock  ValueError: Block of type video is not supported
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+from langchain.messages import VideoContentBlock, HumanMessage, TextContentBlock
+from langchain.chat_models import init_chat_model
+
+model = init_chat_model(
+model=""qwen3.6-35b-a3b"",
+base_url=""https://dashscope.aliyuncs.com/compatible-mode/v1""
+)
+messages = HumanMessage(content_blocks=[
+    TextContentBlock(text=""描述一下这个视频？"", type=""text""),
+    VideoContentBlock(url=""https://test.com/test.mp4"", type=""video"", mime_type=""video/mp4"")
+])
+response = model.invoke([messages])
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+File ~/project/python/me/langchain-example/.venv/lib/python3.12/site-packages/langchain_core/messages/block_translators/openai.py:150, in convert_to_openai_data_block(block, api)
+    148 else:
+    149     error_msg = f""Block of type {block['type']} is not supported.""
+--> 150     raise ValueError(error_msg)
+    152 return formatted_block
+
+ValueError: Block of type video is not supported.
+```
+
+### Description
+
+I'm using `VideoContentBlock` and I want it to convert:
+```python
+VideoContentBlock(url=""https://test.com/test.mp4"", type=""video"", mime_type=""video/mp4"")
+```
+into the following format:
+```json
+{
+    ""type"": ""video_url"",
+    ""video_url"":{
+        ""url"": ""https://test.com/test.mp4"",
+        ""mime_type"": ""video/mp4""
+    }
+}
+```
+However, I'm actually encountering an error:
+```python
+else:
+    error_msg = f""Block of type {block['type']} is not supported.""
+    raise ValueError(error_msg)
+```""
+
+### System Info
+
+System Information
+------------------
+> OS:  Darwin
+> OS Version:  Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132
+> Python Version:  3.12.11 (main, Sep 18 2025, 19:41:45) [Clang 20.1.4 ]
+
+Package Information
+-------------------
+> langchain_core: 1.4.0
+> langchain: 1.3.1
+> langsmith: 0.8.5
+> langchain_anthropic: 1.4.3
+> langchain_deepseek: 1.0.1
+> langchain_ollama: 1.1.0
+> langchain_openai: 1.2.2
+> langchain_protocol: 0.0.15
+> langgraph_sdk: 0.3.14
+
+Optional packages not installed
+-------------------------------
+> deepagents
+> deepagents-cli
+
+Other Dependencies
+------------------
+> anthropic: 0.104.0
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> langgraph: 1.2.1
+> ollama: 0.6.2
+> openai: 2.38.0
+> orjson: 3.11.9
+> packaging: 26.2
+> pydantic: 2.13.4
+> pyyaml: 6.0.3
+> requests: 2.34.2
+> requests-toolbelt: 1.0.0
+> rich: 15.0.0
+> tenacity: 9.1.4
+> tiktoken: 0.13.0
+> typing-extensions: 4.15.0
+> uuid-utils: 0.16.0
+> xxhash: 3.7.0
+> zstandard: 0.25.0",bug core openai external,https://github.com/langchain-ai/langchain/issues/37770
+langchain-ai/langchain,"_to_protocol_usage drops input_token_details in v3 streaming path, causing cache token counts to always be 0","### Submission checklist
+
+- [x] This is a bug, not a usage question.
+- [x] I added a clear and descriptive title that summarizes this issue.
+- [x] I used the GitHub search to find a similar question and didn't find it.
+- [x] I am sure that this is a bug in LangChain rather than my code.
+- [x] The bug is not resolved by updating to the latest stable version of LangChain (or the specific integration package).
+- [x] This is not related to the langchain-community package.
+- [x] I posted a self-contained, minimal, reproducible example. A maintainer can copy it and run it AS IS.
+
+### Package (Required)
+
+- [ ] langchain
+- [ ] langchain-openai
+- [ ] langchain-anthropic
+- [ ] langchain-classic
+- [x] langchain-core
+- [ ] langchain-model-profiles
+- [ ] langchain-tests
+- [ ] langchain-text-splitters
+- [ ] langchain-chroma
+- [ ] langchain-deepseek
+- [ ] langchain-exa
+- [ ] langchain-fireworks
+- [ ] langchain-groq
+- [ ] langchain-huggingface
+- [ ] langchain-mistralai
+- [ ] langchain-nomic
+- [ ] langchain-ollama
+- [ ] langchain-openrouter
+- [ ] langchain-perplexity
+- [ ] langchain-qdrant
+- [ ] langchain-xai
+- [ ] Other / not sure / general
+
+### Related Issues / PRs
+
+_No response_
+
+### Reproduction Steps / Example Code (Python)
+
+```python
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_core.messages import AIMessageChunk, HumanMessage
+from langchain_core.outputs import ChatGenerationChunk
+from langchain_core.language_models._compat_bridge import achunks_to_events
+import asyncio
+
+# Simulate a streaming response where the final chunk carries cache token details
+async def fake_stream():
+    yield ChatGenerationChunk(
+        message=AIMessageChunk(content=""Hello"")
+    )
+    yield ChatGenerationChunk(
+        message=AIMessageChunk(
+            content="""",
+            usage_metadata={
+                ""input_tokens"": 100,
+                ""output_tokens"": 10,
+                ""total_tokens"": 110,
+                ""input_token_details"": {""cache_read"": 90, ""cache_creation"": 5},
+            }
+        )
+    )
+
+async def main():
+    events = []
+    async for event in achunks_to_events(fake_stream()):
+        events.append(event)
+
+    finish_event = next(e for e in events if e.get(""event"") == ""message-finish"")
+    usage = finish_event.get(""usage"", {})
+    print(""usage in message-finish:"", usage)
+    # Expected: input_token_details present
+    # Actual:   input_token_details missing — only input_tokens/output_tokens/total_tokens
+
+asyncio.run(main())
+```
+
+### Error Message and Stack Trace (if applicable)
+
+```shell
+
+```
+
+### Description
+
+* I'm using `astream_events(version=""v3"")` with a model that supports prompt caching (ChatBedrockConverse via langchain-aws).
+* I expect `AIMessage.usage_metadata` to contain `input_token_details` with `cache_read` and `cache_creation` counts, since the provider returns them.
+* Instead, `input_token_details` is always absent from `usage_metadata`, making cache token tracking impossible. The root cause is `_to_protocol_usage` in `langchain_core/language_models/_compat_bridge.py` — it only forwards `input_tokens`, `output_tokens`, `total_tokens`, and `cached_tokens`, silently dropping `input_token_details` and `output_token_details` when building the `message-finish` protocol event.
+
+
+### System Info
+
+
+System Information
+------------------
+> OS:  Darwin
+> OS Version:  Darwin Kernel Version 24.6.0: Mon Jul 14 11:30:40 PDT 2025; root:xnu-11417.140.69~1/RELEASE_ARM64_T8132
+> Python Version:  3.11.15 (main, Mar 20 2026, 00:41:54) [Clang 22.1.1 ]
+
+Package Information
+-------------------
+> langchain_core: 1.4.0
+> langchain: 1.3.1
+> langsmith: 0.8.5
+> deepagents: 0.6.3
+> langchain_anthropic: 1.4.3
+> langchain_aws: 1.5.0
+> langchain_google_genai: 4.2.3
+> langchain_mcp_adapters: 0.2.2
+> langchain_ollama: 1.1.0
+> langchain_openai: 1.2.2
+> langchain_protocol: 0.0.15
+> langgraph_sdk: 0.3.15
+
+Optional packages not installed
+-------------------------------
+> deepagents-cli
+
+Other Dependencies
+------------------
+> anthropic: 0.104.1
+> boto3: 1.43.14
+> filetype: 1.2.0
+> google-genai: 1.75.0
+> httpx: 0.28.1
+> jsonpatch: 1.33
+> langgraph: 1.2.1
+> mcp: 1.27.1
+> numpy: 2.4.6
+> ollama: 0.6.2
+> openai: 2.38.0
+> orjson: 3.11.9
+> packaging: 26.2
+> pydantic: 2.13.4
+> pytest: 9.0.3
+> pyyaml: 6.0.3
+> requests: 2.34.2
+> requests-toolbelt: 1.0.0
+> rich: 15.0.0
+> tenacity: 9.1.4
+> tiktoken: 0.13.0
+> typing-extensions: 4.15.0
+> uuid-utils: 0.16.0
+> wcmatch: 10.1
+> websockets: 16.0
+> xxhash: 3.7.0
+> zstandard: 0.25.0",bug core external,https://github.com/langchain-ai/langchain/issues/37761
+pallets/flask,Implement automatic CORS configuration with security best practices and wildcard prevention,"## Problem Statement
+Flask-CORS is popular but fragile. Overly permissive configurations are common. No built-in security guidance. Developers misunderstand CORS and create security vulnerabilities. Wildcard allows are dangerous but easy to set.
+
+**Business Impact:** Prevents CORS security breaches, enables safe cross-origin communication, improves security posture, reduces vulnerability surface.
+
+## Root Cause Analysis
+CORS is complex. No framework guidance. External library leads to misconfigurations.
+
+## Solution Overview
+- Implement built-in CORS support
+- Add security best practices
+- Prevent dangerous wildcards
+- Create configuration validation
+- Provide clear documentation
+
+**Implementation Steps:**
+1. Design CORS decorator
+2. Implement header handling
+3. Add validation system
+4. Create security checks
+5. Build documentation
+
+## Type of Change
+Enhancement, Security, Best practices
+
+## Testing Done
+- Test 40+ CORS scenarios
+- Verify security controls
+- Test with browsers (Chrome, Firefox, Safari)
+- Performance testing (< 1ms overhead)
+- Security auditing
+
+## Related Issues & Standards
+W3C CORS specification, OWASP security guidelines
+
+## Suggested Labels
+enhancement, cors, security, web-standards, GSSoC26",,https://github.com/pallets/flask/issues/6051
+pallets/flask,Add built-in rate limiting with configurable strategies and distributed support,"## Problem Statement
+Flask lacks built-in rate limiting. Developers implement custom solutions. No standard way to handle distributed rate limiting. API abuse protection is fragmented. Complex configurations needed for production deployments.
+
+**Business Impact:** Protects against abuse, ensures fair resource allocation, improves security, enables reliable SaaS offerings.
+
+## Root Cause Analysis
+Rate limiting is external. No framework support. Distributed strategies are complex.
+
+## Solution Overview
+- Implement rate limiter decorator
+- Support multiple strategies (sliding window, token bucket)
+- Add distributed backend support
+- Create configurable limits
+- Integrate with response headers
+
+**Implementation Steps:**
+1. Design rate limiter API
+2. Implement strategy engines
+3. Add Redis backend support
+4. Build configuration system
+5. Create examples
+
+## Type of Change
+Enhancement, Security, Scalability
+
+## Testing Done
+- Test 20+ rate limiting scenarios
+- Verify accuracy under load
+- Performance testing (< 1ms overhead)
+- Test distributed scenarios
+- Benchmark with 10000+ requests/sec
+
+## Related Issues & Standards
+RFC 6585 rate limiting headers, rate limiting best practices
+
+## Suggested Labels
+enhancement, security, rate-limiting, api-protection, GSSoC26",,https://github.com/pallets/flask/issues/6050
+pallets/flask,Implement automatic API versioning with backward compatibility management,"## Problem Statement
+Flask APIs lack built-in versioning. API changes break clients. No standard deprecation strategy. Version management is manual and fragmented. Teams struggle with backward compatibility.
+
+**Business Impact:** Enables safe API evolution, prevents client breakage, improves developer experience, supports long-term API stability.
+
+## Root Cause Analysis
+Versioning is application responsibility. No framework support. Deprecation is ad-hoc.
+
+## Solution Overview
+- Create versioning decorator system
+- Implement backward compatibility layer
+- Build deprecation warnings
+- Add version negotiation
+- Support multiple API versions simultaneously
+
+**Implementation Steps:**
+1. Design versioning API
+2. Implement route decorator
+3. Build compatibility layer
+4. Add deprecation system
+5. Create examples
+
+## Type of Change
+Enhancement, API design, Developer experience
+
+## Testing Done
+- Test 30+ versioning scenarios
+- Verify backward compatibility
+- Performance testing
+- Test version negotiation
+- Integration testing
+
+## Related Issues & Standards
+Semantic versioning, API design best practices
+
+## Suggested Labels
+enhancement, api-versioning, backward-compatibility, GSSoC26",,https://github.com/pallets/flask/issues/6049
+pallets/flask,Add request logging and tracing system with correlation IDs for distributed debugging,"## Problem Statement
+Flask lacks built-in request tracing. Distributed applications struggle to track requests across services. No correlation IDs by default. Debugging production issues requires external tools. Request context is lost between services.
+
+**Business Impact:** Reduces debugging time by 70%, enables faster incident response, improves observability, reduces MTTR.
+
+## Root Cause Analysis
+Request tracking is external. No standard correlation mechanism. Context propagation is manual.
+
+## Solution Overview
+- Implement correlation ID generation
+- Build request tracing middleware
+- Add automatic context propagation
+- Integrate with logging system
+- Support distributed tracing standards
+
+**Implementation Steps:**
+1. Create correlation ID generator
+2. Build middleware for tracing
+3. Implement context propagation
+4. Add OpenTelemetry support
+5. Create documentation
+
+## Type of Change
+Enhancement, Observability, Developer experience
+
+## Testing Done
+- Test with 50+ service scenarios
+- Verify correlation ID accuracy
+- Performance testing (< 5ms overhead)
+- Integration testing with tracing systems
+- Test context propagation accuracy
+
+## Related Issues & Standards
+OpenTelemetry standards, W3C Trace Context
+
+## Suggested Labels
+enhancement, observability, tracing, logging, GSSoC26",,https://github.com/pallets/flask/issues/6048
+pallets/flask,Implement WebSocket support with async context management and connection pooling,"## Problem Statement
+Flask lacks built-in WebSocket support. Developers rely on external libraries like Flask-SocketIO. No standard way to handle async connections. WebSocket lifecycle management is complex and error-prone.
+
+**Business Impact:** Enables real-time features natively, reduces external dependencies, simplifies development, supports modern web applications.
+
+## Root Cause Analysis
+Flask focuses on HTTP. WebSocket is afterthought. No async-first design. Integration is fragmented.
+
+## Solution Overview
+- Implement WebSocket primitives
+- Add async context management
+- Build connection pooling
+- Create lifecycle hooks
+- Integrate with Flask routing
+
+**Implementation Steps:**
+1. Design WebSocket API
+2. Implement connection manager
+3. Add async support
+4. Build routing integration
+5. Create examples and documentation
+
+## Type of Change
+Enhancement, New feature, Web standards
+
+## Testing Done
+- Test 30+ WebSocket scenarios
+- Benchmark connection performance
+- Test with 1000+ concurrent connections
+- Memory profiling
+- Integration testing
+
+## Related Issues & Standards
+WebSocket RFC 6455, async/await patterns
+
+## Suggested Labels
+enhancement, websocket, async, networking, GSSoC26",,https://github.com/pallets/flask/issues/6047
