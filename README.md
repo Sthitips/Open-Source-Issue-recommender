@@ -26,6 +26,12 @@ An AI-powered recommendation system that helps developers discover relevant GitH
 5. Return top matching issues
 6. Generate AI explanations using Gemini
 
+## Demonstration
+<img width="1764" height="940" alt="image" src="https://github.com/user-attachments/assets/aaf09e4b-d19a-42d3-8030-82db03ac9a99" />
+<img width="1712" height="1242" alt="image" src="https://github.com/user-attachments/assets/4b20f7b0-f7c8-42af-b719-e5427a1cb86c" />
+
+
+
 ## Installation
 
 pip install -r requirements.txt
